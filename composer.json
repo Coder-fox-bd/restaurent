@@ -16,7 +16,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "2.4",
         "paypal/rest-api-sdk-php": "*",
-        "phpmailer/phpmailer": "6.0"
+        "phpmailer/phpmailer": "^6.5"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
