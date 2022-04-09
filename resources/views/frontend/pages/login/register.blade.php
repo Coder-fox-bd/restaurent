@@ -103,13 +103,13 @@
 
 
 @section('slider-js')
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
       var onloadCallback = function() {
         grecaptcha.render('html_element', {
           'sitekey' : '6LdXY98ZAAAAAMpmXuC5XVQWVVHRPaYaSA_TedkG'
         });
       };
-    </script>
+    </script> --}}
     <script type="text/javascript">
         document.getElementById("register_form").addEventListener("submit",function(evt)
           {
