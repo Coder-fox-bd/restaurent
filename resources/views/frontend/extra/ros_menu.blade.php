@@ -1,25 +1,46 @@
-<div class="cell12">
-    <div class="productItem">
-        <!-- product view only mbl -->
-    
 
-        @include('frontend.extra.ros_mobile_view')
-        <!-- product view only mbl end-->
-        <div class="productdes">
+<div class="col col-lg-3 col-6 d-none d-lg-block mb-3 ftco-faqs img">
+    <div style="position: sticky; top: 10px;">
+    <section id="menu-category" class=" p-lg-3 my-3 link-background" data-spy="affix">
+        <h3>ITEMS</h3>
+        <ul class="nav flex-column" id="ul-scroll-category" style="max-height: 568px;">
+        @if(count($category)>0)
+        @foreach($category as $cat)
+        <li class="nav-item d-block">
+            <a class="nav-link" href="#cat_{{$cat['id']}}">{{$cat['name']}}</a>
+        </li>
+        @endforeach
+        @endif              
+        </ul>
+    </section>
+    </div>
+</div>
+<div class="col-6 col-12 col-lg-5 search-takeaways pl-lg-0 mb-3">
+    <div class="accordion">
+        <div class="card">
             <?php 
             $modal='';
-            //dd($category);
             ?>
             @if(count($category)>0)
-                @foreach($category as $cat)
-                    
-                    <div class="clearfix"></div>
-                    <div class="padd-top-20"></div>
-                    <h4 id="pro{{$cat['id']}}" class="block-head  margin-bottom-40 fx animated fadeInUp" data-animate="fadeInUp" data-animation-delay="600" style="animation-delay: 600ms;">
-                        <span>{{$cat['name']}}</span>
-                        
-                    </h4>
-                     
+            @foreach($category as $cat)
+            <span>
+                <div class="card-header">
+                    <a href="#cat_{{$cat['id']}}" id="#cat_{{$cat['id']}}">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link">
+                                <div name="{{$cat['name']}}">
+                                <div class="card-header border-0 collapsed">
+                                <span class="card-title">{{$cat['name']}}</span>
+                                </div>
+                                </div>
+                            </button>
+                        </h5>
+                    </a>
+                </div>
+        
+                
+                @foreach ($cat['product_row'] as $key => $row)
+                <div class="card-body">
                     <?php
                     if($cat['layout']==1 || $cat['layout']==4){
                         if(isset($cat['product_row']))
@@ -51,23 +72,23 @@
                                             </td>
                                             <td><span style="font-weight: 900;">
                                             @if($interface==3)
-                                            <?php 
-                                            $min_prince_row=0; 
-                                            foreach($row['modal'] as $key=>$mod):
-                                                if($min_prince_row>0)
-                                                {
-                                                    if($min_prince_row>$mod['price'])
+                                                <?php 
+                                                $min_prince_row=0; 
+                                                foreach($row['modal'] as $key=>$mod):
+                                                    if($min_prince_row>0)
+                                                    {
+                                                        if($min_prince_row>$mod['price'])
+                                                        {
+                                                            $min_prince_row=$mod['price'];
+                                                        }
+                                                    }
+                                                    else
                                                     {
                                                         $min_prince_row=$mod['price'];
                                                     }
-                                                }
-                                                else
-                                                {
-                                                    $min_prince_row=$mod['price'];
-                                                }
-                                            endforeach;
-                                            echo "£".$min_prince_row;
-                                            ?>
+                                                endforeach;
+                                                echo "£".$min_prince_row;
+                                                ?>
                                             @else
                                                 £{{$row['price']}}
                                             @endif
@@ -75,6 +96,7 @@
                                             <td align="right">
                                                 <div class="prosec">
                                                     @if($interface==5)
+                                                    <a href="javascript:void(0);" class="button-cart_wop button proButton modal-trigger" data-modal="pizza_modal_name_{{$row['id']}}"><i class="fa fa-plus"></i></a>
                                                         <a href="javascript:void(0);" class="button-cart_wop button proButton modal-trigger" data-modal="pizza_modal_name_{{$row['id']}}"><i class="fa fa-plus"></i></a>
                                                     @elseif($interface==4)
                                                         <a href="javascript:void(0);" class="button-cart_wop button proButton modal-trigger" data-modal="ex_modal-name_{{$row['id']}}"><i class="fa fa-plus"></i></a>
@@ -110,8 +132,8 @@
                                                                 <img src="{{url('front-theme/images/cart-icon.png')}}">
                                                             </div>
                                                             <a  href="javascript:void(0);" data-name-snd="{{$dt['name']}}"  data-id="{{$row['id']}}" snd-data-id="{{$dt['id']}}" snd-data-price="{{$dt['price']}}" ex-class="add-snd-subcat-cart" name="dddd"  class="add-snd-cart proButton">
-                                                               <i class="fa fa-plus"></i>
-                                                           </a>
+                                                                <i class="fa fa-plus"></i>
+                                                            </a>
                                                         </p>
                                                     </div>
                                                 </td>
@@ -145,39 +167,39 @@
                                                         if(isset($row['PizzaSize']))
                                                         {
                                                             $modal.='<section class="custom-radio-section custom-border-style-bottom" id="dta-category">';
-                                                           
+                                                        
                                                             foreach ($row['PizzaSize'] as $pzkey => $pz) {
 
                                                                 $modal.='<div class="custom-radio-input-group selection-category-part">
-                                                                          <input data-modal-id="'.$modal_name_pizza.'"  class="pizza-check-category" type="radio" id="control_'.str_replace(' ','_',strtolower($row['id'])).'_'.$pzkey.'" name="'.str_replace(' ','_',strtolower($row['id'])).'" value="'.$pz['id'].'">
-                                                                          <label for="control_'.str_replace(' ','_',strtolower($row['id'])).'_'.$pzkey.'" class="custom-radio-input-group-border-bottom">
+                                                                        <input data-modal-id="'.$modal_name_pizza.'"  class="pizza-check-category" type="radio" id="control_'.str_replace(' ','_',strtolower($row['id'])).'_'.$pzkey.'" name="'.str_replace(' ','_',strtolower($row['id'])).'" value="'.$pz['id'].'">
+                                                                        <label for="control_'.str_replace(' ','_',strtolower($row['id'])).'_'.$pzkey.'" class="custom-radio-input-group-border-bottom">
                                                                             <p style="margin: 0px !important;">'.$pz['name'].'</p>
-                                                                          </label>
+                                                                        </label>
                                                                         </div>';
 
                                                             }
 
-                                                           
+                                                        
 
 
-                                                           $modal.='
+                                                        $modal.='
                                                                 </section>';
                                                         }
 
 
 
-                                                       if(isset($row['PizzaFlabour']))
-                                                       {
+                                                    if(isset($row['PizzaFlabour']))
+                                                    {
 
-                                                       $modal.='<section class="custom-radio-section custom-border-style-bottom sub-category" id="sub-category_'.$row['id'].'" style="display: none !important;">';
+                                                    $modal.='<section class="custom-radio-section custom-border-style-bottom sub-category" id="sub-category_'.$row['id'].'" style="display: none !important;">';
 
 
                                                             foreach ($row['PizzaFlabour'] as $pzskey => $psz) {
                                                             $modal.='<div class="custom-radio-input-group selection-subcat-part">
-                                                                      <input class="pizza-check-subcat" data-modal-id="'.$modal_name_pizza.'"  type="radio" id="control_'.str_replace(' ','_',strtolower($row['name'])).'_'.$pzskey.'" name="'.str_replace(' ','_',strtolower($row['name'])).'_subcat" value="'.$psz['id'].'">
-                                                                      <label for="control_'.str_replace(' ','_',strtolower($row['name'])).'_'.$pzskey.'" class="custom-radio-input-group-border-bottom">
+                                                                    <input class="pizza-check-subcat" data-modal-id="'.$modal_name_pizza.'"  type="radio" id="control_'.str_replace(' ','_',strtolower($row['name'])).'_'.$pzskey.'" name="'.str_replace(' ','_',strtolower($row['name'])).'_subcat" value="'.$psz['id'].'">
+                                                                    <label for="control_'.str_replace(' ','_',strtolower($row['name'])).'_'.$pzskey.'" class="custom-radio-input-group-border-bottom">
                                                                         <p style="margin: 0px !important;">'.$psz['name'].'</p>
-                                                                      </label>
+                                                                    </label>
                                                                     </div>';
                                                             }
 
@@ -228,7 +250,7 @@
                                                                                 </tr>';
                                                                             
                                                                         }
-                                                                              
+                                                                            
                                                             $modal.='</tbody>
                                                                 </table>';
 
@@ -240,13 +262,13 @@
 
 
                                                     $modal.='</div>';     
-                                                               
+                                                            
                                                     $modal.=' <div class="modal-footer" style="padding: 15px;">
                                                                     <button data-id="'.$row['id'].'" data-take="'.$modal_name_pizza.'" type="button" class="btn btn-primary left add-total-pizza-basket"  style="color: white; margin-bottom: 15px !important;">
                                                                         <i class="fa fa-shopping-cart"></i> <b>Skip Extras</b>
                                                                     </button>
                                                                     <span class="right" style="font-weight: 600; font-size: 16px; color: #000;">£<span class="totlabsk">'.$row['price'].'</span></span>
-                                                              </div>';                
+                                                            </div>';                
                                                         
 
                                                     $modal.='</div>
@@ -263,73 +285,73 @@
                                                                 <h4><i class="fa fa-info-circle"></i> '.$row['name'].'</h4>
                                                             </div>
                                                             <div class="modal-body">
-                                                       
+                                                    
                                                                 <form action="#" id="reg_form" style="padding-top:7px;">';
 
-                                                         $im=0;
-                                                           foreach($row['ProductOneSubLevel'] as $index=>$itm):
-                                                           
-                                                           $ikm='';
-                                                           if(isset($row['ProductOneSubLevel'][$index+1]))
-                                                           {
+                                                        $im=0;
+                                                        foreach($row['ProductOneSubLevel'] as $index=>$itm):
+                                                        
+                                                        $ikm='';
+                                                        if(isset($row['ProductOneSubLevel'][$index+1]))
+                                                        {
                                                                 $ikm=$row['ProductOneSubLevel'][$index+1]['is_parent'];
-                                                           }
+                                                        }
 
-                                                           if((!empty($ikm) && $ikm!=0 && $ikm!='No Parent') && $im==0)
-                                                           {
+                                                        if((!empty($ikm) && $ikm!=0 && $ikm!='No Parent') && $im==0)
+                                                        {
                                                                 $im=1;
                                                                 $modal.='<div class="form_popup bgbor" data-m="'.$ikm.'" data-id="'.$itm['is_parent'].'">
                                                                         <div class="back_popup">';
-                                                           }
-                                                          
+                                                        }
+                                                        
 
-                                                           if($im==0)
-                                                           {
+                                                        if($im==0)
+                                                        {
                                                                 $modal.='<div class="form_popup bgbor" data-m="'.$ikm.'" data-id="'.$itm['is_parent'].'">
                                                                         <div class="back_popup">';
-                                                           }
-                                                           
+                                                        }
+                                                        
 
-                                                         
-                                                      
-                                                           
+                                                        
+                                                    
+                                                        
                                                                 
-                                                           
-                                                           
-                                                           
+                                                        
+                                                        
+                                                        
                                                                     $modal.='<div class="cell-4" style="padding-top:12px;">
                                                                                 <label>'.$itm['name'].'</label>
                                                                             </div>
                                                                             <div class="cell-8" style="padding-top:7px;">
                                                                                 <select required="" title="'.$itm['name'].'">';     
-                                                                           foreach($itm['dropdown'] as $drp):
+                                                                        foreach($itm['dropdown'] as $drp):
                                                                                 $modal.='<option value="'.trim($drp).'">'.trim($drp).'</option>';  
-                                                                           endforeach;          
-                                                                       $modal.='</select>
+                                                                        endforeach;          
+                                                                    $modal.='</select>
                                                                             </div><div class="clearfix"></div>';
 
-                                                               
-                                                             if((!empty($ikm) && $ikm!=0 && $ikm!='No Parent') && $im==1)
-                                                               {
+                                                            
+                                                            if((!empty($ikm) && $ikm!=0 && $ikm!='No Parent') && $im==1)
+                                                            {
                                                                     $im=1;
-                                                               }
-                                                               else
-                                                               {
+                                                            }
+                                                            else
+                                                            {
                                                                     $modal.='</div>
                                                                         </div>';
                                                                     $im=0;
-                                                               }
+                                                            }
 
 
-                                                               
-                                                               
-                                                               
+                                                            
+                                                            
+                                                            
 
                                                                 
                                                                     
-                                                                  
+                                                                
 
-                                                               
+                                                            
 
                                                             endforeach;        
                                                                     
@@ -345,36 +367,36 @@
                                         elseif($interface==3)
                                         {
                                             $modal.='<div class="modal" id="other_modal_name_'.$row['id'].'">
-                                                          <div class="modal-sandbox"></div>
-                                                          <div class="modal-box">
+                                                        <div class="modal-sandbox"></div>
+                                                        <div class="modal-box">
                                                             <div class="modal-header">
-                                                              <div class="close-modal">&#10006;</div> 
-                                                              <h4><i class="fa fa-info-circle"></i> '.$row['name'].'</h4>
+                                                            <div class="close-modal">&#10006;</div> 
+                                                            <h4><i class="fa fa-info-circle"></i> '.$row['name'].'</h4>
 
-                                                          </div>
-                                                          <div class="modal-header-details">
+                                                        </div>
+                                                        <div class="modal-header-details">
                                                             <p align="center">
-                                                              <br>
-                                                              <b>Please select a option.</b><br>
+                                                            <br>
+                                                            <b>Please select a option.</b><br>
                                                             </p>   
                                                         </div>
                                                         <div class="modal-body" style="padding-bottom:10px;">';
 
                                             foreach($row['modal'] as $key=>$mod):
                                                 $modal.='       <div class="cell-6">
-                                                                   <a data-id="'.$row['id'].'" snd-data-id="'.$mod['id'].'" name="options" id="option_0" class="btn add-snd-cart btn-optionlist"><span class="pull-left">
+                                                                <a data-id="'.$row['id'].'" snd-data-id="'.$mod['id'].'" name="options" id="option_0" class="btn add-snd-cart btn-optionlist"><span class="pull-left">
                                                                             '.$mod['name'].'
-                                                                       </span> 
-                                                                       <span class="pull-right">
-                                                                       £'.$mod['price'].'
-                                                                       </span>
-                                                                   </a>
+                                                                    </span> 
+                                                                    <span class="pull-right">
+                                                                    £'.$mod['price'].'
+                                                                    </span>
+                                                                </a>
                                                                 </div>';
                                             endforeach;
 
                                         $modal.='                
-                                                      </div>
-                                                  </div>
+                                                    </div>
+                                                </div>
                                                 </div>';
                                         }
 
@@ -524,39 +546,39 @@
                                                         if(isset($row['PizzaSize']))
                                                         {
                                                             $modal.='<section class="custom-radio-section custom-border-style-bottom" id="dta-category">';
-                                                           
+                                                        
                                                             foreach ($row['PizzaSize'] as $pzkey => $pz) {
 
                                                                 $modal.='<div class="custom-radio-input-group selection-category-part">
-                                                                          <input data-modal-id="'.$modal_name_pizza.'"  class="pizza-check-category" type="radio" id="control_'.str_replace(' ','_',strtolower($row['id'])).'_'.$pzkey.'" name="'.str_replace(' ','_',strtolower($row['id'])).'" value="'.$pz['id'].'">
-                                                                          <label for="control_'.str_replace(' ','_',strtolower($row['id'])).'_'.$pzkey.'" class="custom-radio-input-group-border-bottom">
+                                                                        <input data-modal-id="'.$modal_name_pizza.'"  class="pizza-check-category" type="radio" id="control_'.str_replace(' ','_',strtolower($row['id'])).'_'.$pzkey.'" name="'.str_replace(' ','_',strtolower($row['id'])).'" value="'.$pz['id'].'">
+                                                                        <label for="control_'.str_replace(' ','_',strtolower($row['id'])).'_'.$pzkey.'" class="custom-radio-input-group-border-bottom">
                                                                             <p style="margin: 0px !important;">'.$pz['name'].'</p>
-                                                                          </label>
+                                                                        </label>
                                                                         </div>';
 
                                                             }
 
-                                                           
+                                                        
 
 
-                                                           $modal.='
+                                                        $modal.='
                                                                 </section>';
                                                         }
 
 
 
-                                                       if(isset($row['PizzaFlabour']))
-                                                       {
+                                                    if(isset($row['PizzaFlabour']))
+                                                    {
 
-                                                       $modal.='<section class="custom-radio-section custom-border-style-bottom sub-category" id="sub-category_'.$row['id'].'" style="display: none !important;">';
+                                                    $modal.='<section class="custom-radio-section custom-border-style-bottom sub-category" id="sub-category_'.$row['id'].'" style="display: none !important;">';
 
 
                                                             foreach ($row['PizzaFlabour'] as $pzskey => $psz) {
                                                             $modal.='<div class="custom-radio-input-group selection-subcat-part">
-                                                                      <input class="pizza-check-subcat" data-modal-id="'.$modal_name_pizza.'"  type="radio" id="control_'.str_replace(' ','_',strtolower($row['name'])).'_'.$pzskey.'" name="'.str_replace(' ','_',strtolower($row['name'])).'_subcat" value="'.$psz['id'].'">
-                                                                      <label for="control_'.str_replace(' ','_',strtolower($row['name'])).'_'.$pzskey.'" class="custom-radio-input-group-border-bottom">
+                                                                    <input class="pizza-check-subcat" data-modal-id="'.$modal_name_pizza.'"  type="radio" id="control_'.str_replace(' ','_',strtolower($row['name'])).'_'.$pzskey.'" name="'.str_replace(' ','_',strtolower($row['name'])).'_subcat" value="'.$psz['id'].'">
+                                                                    <label for="control_'.str_replace(' ','_',strtolower($row['name'])).'_'.$pzskey.'" class="custom-radio-input-group-border-bottom">
                                                                         <p style="margin: 0px !important;">'.$psz['name'].'</p>
-                                                                      </label>
+                                                                    </label>
                                                                     </div>';
                                                             }
 
@@ -600,14 +622,14 @@
 
                                                                                         <div class="prosec">
                                                                                             <p class="proPrice" style="margin-bottom: 5px;"><span>£'.$kr['price'].'</span>
-                                                                                                <a href="javascript:void(0);" data-price="'.$kr['price'].'" data-id="'.$kr['id'].'"  data-modal-id="'.$modal_name_pizza.'"  class="proButton add-to-extras"><i class="fa fa-plus"></i></a>
+                                                                                                <a href="javascript:void(0);" data-price="'.$kr['price'].'" data-id="'.$kr['id'].'"  data-modal-id="'.$modal_name_pizza.'"  class="proButton add-to-extras">Add</a>
                                                                                             </p>
                                                                                         </div>
                                                                                     </td>
                                                                                 </tr>';
                                                                             
                                                                         }
-                                                                              
+                                                                            
                                                             $modal.='</tbody>
                                                                 </table>';
 
@@ -619,13 +641,13 @@
 
 
                                                     $modal.='</div>';     
-                                                               
+                                                            
                                                     $modal.=' <div class="modal-footer" style="padding: 15px;">
                                                                     <button data-id="'.$row['id'].'" data-take="'.$modal_name_pizza.'" type="button" class="btn btn-primary left add-total-pizza-basket"  style="color: white; margin-bottom: 15px !important;">
                                                                         <i class="fa fa-shopping-cart"></i> <b>Skip Extras</b>
                                                                     </button>
                                                                     <span class="right" style="font-weight: 600; font-size: 16px; color: #000;">£<span class="totlabsk">'.$row['price'].'</span></span>
-                                                              </div>';                
+                                                            </div>';                
                                                         
 
                                                     $modal.='</div>
@@ -642,65 +664,65 @@
                                                                 <h4><i class="fa fa-info-circle"></i> MEAL FOR 2 PERSONS</h4>
                                                             </div>
                                                             <div class="modal-body">
-                                                       
+                                                    
                                                                 <form action="#" id="reg_form" style="padding-top:7px;">';
 
 
-                              
+                            
 
                                                             $im=0;
-                                                           foreach($row['ProductOneSubLevel'] as $index=>$itm):
-                                                           
-                                                           $ikm='';
-                                                           if(isset($row['ProductOneSubLevel'][$index+1]))
-                                                           {
+                                                        foreach($row['ProductOneSubLevel'] as $index=>$itm):
+                                                        
+                                                        $ikm='';
+                                                        if(isset($row['ProductOneSubLevel'][$index+1]))
+                                                        {
                                                                 $ikm=$row['ProductOneSubLevel'][$index+1]['is_parent'];
-                                                           }
+                                                        }
 
-                                                           if((!empty($ikm) && $ikm!=0 && $ikm!='No Parent') && $im==0)
-                                                           {
+                                                        if((!empty($ikm) && $ikm!=0 && $ikm!='No Parent') && $im==0)
+                                                        {
                                                                 $im=1;
                                                                 $modal.='<div class="form_popup bgbor" data-m="'.$ikm.'" data-id="'.$itm['is_parent'].'">
                                                                         <div class="back_popup">';
-                                                           }
-                                                          
+                                                        }
+                                                        
 
-                                                           if($im==0)
-                                                           {
+                                                        if($im==0)
+                                                        {
                                                                 $modal.='<div class="form_popup bgbor" data-m="'.$ikm.'" data-id="'.$itm['is_parent'].'">
                                                                         <div class="back_popup">';
-                                                           }
-                                                           
+                                                        }
+                                                        
 
-                                                         
-                                                      
-                                                           
+                                                        
+                                                    
+                                                        
                                                                 
-                                                           
-                                                           
-                                                           
+                                                        
+                                                        
+                                                        
                                                                     $modal.='<div class="cell-4" style="padding-top:12px;">
                                                                                 <label>'.$itm['name'].'</label>
                                                                             </div>
                                                                             <div class="cell-8" style="padding-top:7px;">
                                                                                 <select required="" title="'.$itm['name'].'">';     
-                                                                           foreach($itm['dropdown'] as $drp):
+                                                                        foreach($itm['dropdown'] as $drp):
                                                                                 $modal.='<option value="'.trim($drp).'">'.trim($drp).'</option>';  
-                                                                           endforeach;          
-                                                                       $modal.='</select>
+                                                                        endforeach;          
+                                                                    $modal.='</select>
                                                                             </div><div class="clearfix"></div>';
 
-                                                               
-                                                             if((!empty($ikm) && $ikm!=0 && $ikm!='No Parent') && $im==1)
-                                                               {
+                                                            
+                                                            if((!empty($ikm) && $ikm!=0 && $ikm!='No Parent') && $im==1)
+                                                            {
                                                                     $im=1;
-                                                               }
-                                                               else
-                                                               {
+                                                            }
+                                                            else
+                                                            {
                                                                     $modal.='</div>
                                                                         </div>';
                                                                     $im=0;
-                                                               }
+                                                            }
 
 
 
@@ -718,35 +740,35 @@
                                         elseif($interface==3)
                                         {
                                             $modal.='<div class="modal" id="other_modal_name_'.$row['id'].'">
-                                                          <div class="modal-sandbox"></div>
-                                                          <div class="modal-box">
+                                                        <div class="modal-sandbox"></div>
+                                                        <div class="modal-box">
                                                             <div class="modal-header">
-                                                              <div class="close-modal">&#10006;</div> 
-                                                              <h4><i class="fa fa-info-circle"></i> '.$row['name'].'</h4>
+                                                            <div class="close-modal">&#10006;</div> 
+                                                            <h4><i class="fa fa-info-circle"></i> '.$row['name'].'</h4>
 
-                                                          </div>
-                                                          <div class="modal-header-details">
+                                                        </div>
+                                                        <div class="modal-header-details">
                                                             <p align="center">
-                                                              <br>
-                                                              <b>Please select a option.</b><br>
+                                                            <br>
+                                                            <b>Please select a option.</b><br>
                                                             </p>   
                                                         </div>
                                                         <div class="modal-body" style="padding-bottom:10px;">';
 
                                             foreach($row['modal'] as $key=>$mod):
                                                 $modal.='       <div class="cell-6">
-                                                                   <a data-id="'.$row['id'].'" snd-data-id="'.$mod['id'].'" name="options" id="option_0" class="btn add-snd-cart btn-optionlist"><span class="pull-left">
+                                                                <a data-id="'.$row['id'].'" snd-data-id="'.$mod['id'].'" name="options" id="option_0" class="btn add-snd-cart btn-optionlist"><span class="pull-left">
                                                                             '.$mod['name'].'
-                                                                       </span> 
-                                                                       <span class="pull-right">
-                                                                       £'.$mod['price'].'
-                                                                       </span>
-                                                                   </a>
+                                                                    </span> 
+                                                                    <span class="pull-right">
+                                                                    £'.$mod['price'].'
+                                                                    </span>
+                                                                </a>
                                                                 </div>';
                                             endforeach;
                                         $modal.='                
-                                                      </div>
-                                                  </div>
+                                                    </div>
+                                                </div>
                                                 </div>';
                                         }
                                     }
@@ -759,34 +781,29 @@
                         }
                     }
                     ?>
+                </div>
                 @endforeach
-            @endif
-
-            
-
-
-            </div>
+            </span>
+            @endforeach
+            @endif  
 
         </div>
     </div>
+</div>
 
 
-    <!--modal start area-->
-            <!--modal 1 start here-->
-                <style type="text/css" media="screen">
-                   .modal-header h4{ margin: 0px !important;  }
-                   .form_popup{max-width: 550px; padding: 5px;  font-weight: normal!important;}
-                   .form_popup label{font-size: 13px;}
-                   .modal-body,.back_popup{  display: block; overflow: hidden;}
-                   .bgbor{ background-color: #F9F9F9;border-bottom: 1px dashed #dddddd;padding: 5px 0px 5px 0px; margin-bottom: 5px;}
-                   .back_popup select{ width: 50%; margin-top: 0px; margin-bottom: 5px;}
+<!--modal start area-->
+    <!--modal 1 start here-->
+    <style type="text/css" media="screen">
+        .modal-header h4{ margin: 0px !important;  }
+        .form_popup{max-width: 550px; padding: 5px;  font-weight: normal!important;}
+        .form_popup label{font-size: 13px;}
+        .modal-body,.back_popup{  display: block; overflow: hidden;}
+        .bgbor{ background-color: #F9F9F9;border-bottom: 1px dashed #dddddd;padding: 5px 0px 5px 0px; margin-bottom: 5px;}
+        .back_popup select{ width: 50%; margin-top: 0px; margin-bottom: 5px;}
 
-               </style>
+    </style>
 
-               <?php echo $modal;?>
-
-                
-            
-                
-                <!-- Modal 3 End-->
+    <?php echo $modal;?>
+        <!-- Modal 3 End-->
 <!--modal end area-->

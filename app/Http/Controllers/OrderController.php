@@ -1307,7 +1307,7 @@ class OrderController extends Controller {
 
         $cleantag = DB::table('product_tags')->where('pid', '=', $id)->delete();
 
-        $delinfo = Product::find($id);
+        $delinfo = Orders::find($id);
 
         $delinfo->delete();
 

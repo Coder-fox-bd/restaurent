@@ -172,6 +172,54 @@
         }
 
         </script>
+
+         <script src="{{ asset('new_design/assets/frontend/js/jquery.min.js') }}"></script>
+         <script src="{{ asset('new_design/assets/frontend/js/jquery-migrate-3.0.1.min.js') }}"></script>
+       <!--   <script src="assets/frontend/js/popper.min.js"></script> -->
+         <script src="{{ asset('new_design/assets/frontend/js/bootstrap.min.js') }}"></script>
+         <!-- <script src="assets/frontend/js/jquery.easing.1.3.js"></script> -->
+         <script src="{{ asset('new_design/assets/frontend/js/jquery.waypoints.min.js') }}"></script>
+         <script src="{{ asset('new_design/assets/frontend/js/jquery.stellar.min.js') }}"></script>
+         <!-- <script src="assets/frontend/js/bootstrap-datepicker.js"></script> -->
+         <!-- <script src="assets/frontend/js/jquery.timepicker.min.js"></script> -->
+         <script src="{{ asset('new_design/assets/frontend/js/owl.carousel.min.js') }}"></script>
+         <script src="{{ asset('new_design/assets/frontend/js/jquery.magnific-popup.min.js') }}"></script>
+         <script src="{{ asset('new_design/assets/frontend/js/main.js') }}"></script>
+       
+       
+       
+       
+        <script>
+       //     $(document).ready(function(){
+       //   let $button =$(".btn-primary");
+       //   $button.click(function(){
+       //         $(".panel-collapse").toggle()
+       
+       //         var $this = $(this);
+       //         $this.toggleClass('.btn-primary');
+       //         if(!$this.hasClass('.btn-primary')){
+       //          $this.text('Hide all');
+       //         } else {
+       //          $this.text('Show all');
+       //          }
+       //     });
+       // });
+        </script>
+       
+       
+       <script>
+       $(document).ready(function()
+       {
+           $("a[href^='#']").bind("click",function(){
+           var target = $(this).attr("href");
+           var elmnt = document.getElementById(target);
+           elmnt.scrollIntoView();
+         });
+       });
+       </script>
+       
+       <script src="{{ asset('new_design/assets/frontend/js/common.js') }}"></script> 
+       
         <!-- Waypoints script -->
         <script type="text/javascript" src="{{url('front-theme/js/waypoints.min.js')}}"></script>
         @yield('slider-js')
@@ -181,10 +229,6 @@
 
         <!-- Tweeter API plugin -->
         <script type="text/javascript" src="{{url('front-theme/js/jflickrfeed.min.js')}}"></script>
-
-        
-        <!-- NiceScroll plugin -->
-        <script type="text/javascript" src="{{url('front-theme/js/jquery.nicescroll.min.js')}}"></script>
 
         <!-- general script file -->
         <script type="text/javascript" src="{{url('front-theme/js/script.js')}}"></script>

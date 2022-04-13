@@ -148,6 +148,244 @@
                 </div>  
                 <!-- cell3 -->
 
-
+                <div class="col col-12 col-lg-4 px-3 p-lg-0 mb-3">
+                    <div style="position: sticky; top: 10px;">
+                        <div name="cart-basket-navigate">
+                            <section id="cart-Basket" class="basket-order-view my-3 p-3 p-lg-3 link-background">
+                                <div class="row">
+                                <div class="inner center col-md-12 text-center mb-15 border-bottom">
+                                    <a href="javascript:;" class="top10 green-color change-address block text-center">
+                                        <i class="fa fa-location-arrow" aria-hidden="true"></i> Search Postcode								</a>
+                                    
+                                    <p class="deliverd has-success" style="color: green;font-weight: bold;"></p>
+                                    <p class="not-deliverd has-danger"></p>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="cart-cont" id="style-4">
+                                <span class="append_cart_item">		
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h3><span>Your Basket</span></h3>
+                                        </div>
+                                        <div class="empty_cart">Your cart is empty</div>
+                                    </div>
+                                </span>
+                            </div>
+                                
+                            <br>
+                            
+                            <!-- Button trigger modal -->
+                            <a class="allergy" data-toggle="modal" data-target="#exampleModal">
+                                <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Do you have an allergy or other dietary requirement?
+                            </a>
+                            </section>
+                        </div>
+                    </div>
+                </div>
 
                
+
+
+
+
+
+
+
+
+
+                <div class="col col-12 col-lg-4 px-3 p-lg-0 mb-3">
+                    <div style="position: sticky; top: 10px;">
+                        <div name="cart-basket-navigate">
+                            <section id="cart-Basket" class="basket-order-view my-3 p-3 p-lg-3 link-background">
+                                <div class="row">
+                                <div class="inner center col-md-12 text-center mb-15 border-bottom">                                    
+                                    <a href="javascript:;" class="top10 green-color change-address block text-center">
+                                        <i class="fa fa-location-arrow" aria-hidden="true"></i> Search Postcode								</a>
+                                    
+                                    <p class="deliverd has-success" style="color: green;font-weight: bold;"></p>
+                                    <p class="not-deliverd has-danger"></p>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="cart-cont" id="style-4">
+                                <span class="append_cart_item">
+    
+    
+    <form action="https://coriandermanchester.co.uk/central-chorlton/checkout" class="checkout" id="checkout" method="post" accept-charset="utf-8">
+            
+            <input type="hidden" name="cart" id="cart" value="38">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <!--<h3><span>Delivery Options</span></h3>-->
+                </div>
+                <div class="col-md-12 row">
+                                    <div class="col-md-6 col-sm-3 col-xs-3">
+                        <div class="custom-control custom-radio mb-3">
+                            <input type="radio" class="custom-control-input chk_type" value="1" name="order_type" id="order_type_1">
+                            <label class="custom-control-label" for="order_type_1">Collection <i class="fa fa-shopping-bag" aria-hidden="true"></i></label>
+                        </div>
+                    </div>
+                                    <div class="col-md-6 col-sm-3 col-xs-3">
+                        <div class="custom-control custom-radio mb-3">
+                            <input type="radio" class="custom-control-input chk_type" value="2" name="order_type" id="order_type_2" checked="">
+                            <label class="custom-control-label" for="order_type_2">Delivery <i class="fa fa-motorcycle" aria-hidden="true"></i></label>
+                        </div>
+                    </div>
+                                    </div>
+                
+            </div>
+        
+    
+    
+    
+    <div class="row">
+            <div class="col-md-10">
+            <h3><span>Your Basket</span></h3>
+        </div>
+        
+        
+    
+        <div class="col-md-2 clear-cart-ico">
+           <a href="javascript:void(0)" data-id="" data-cart="38" class="delete_item_cart"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    
+    <hr class="my-2">
+    
+    
+                            
+     <div class="scrollbar basket-order-items basket-quick-checkout" id="cart-items">
+                 <div class="items-in-basket my-2 mb-3 border-0">
+                <div class="row">
+                    <div class="col-md-6">
+                      <p class="title-menu">1 x CHICKEN Korma </p>
+                    </div>
+                    <div class="col-md-3 text-right p-0">
+                        <div class="product__details__quantity">
+                            <!--<span class="del_item"><a href="javascript:void(0)" data-id="" data-cart="" class="delete_item_cart"><i class="fa fa-trash-o" aria-hidden="true"></i></a></span>-->
+                            <div class="quantity">
+                                <div class="pro-qty-cart product_qty_hgt">
+                                                                    <span class="product_count_item number-qty-decr  qtybtn delete_item_cart" type="main_item" data-id="72f3754880f31" data-cart="38">-</span>
+                                    
+                                    <input class="product_count_item number-qty" id="main_item_qty_72f3754880f31" type="text" value="1" min="1" max="10" name="main_item_qty" onkeypress="return isNumber(event)">
+                                    
+                                    <span class="product_count_item number-qty-incrs  qtybtn update_item_cart" type="main_item" data-id="72f3754880f31" data-cart="38">+</span>
+                                    
+                                </div>
+                                <!--<span class="update_item"><a href="javascript:void(0)" data-id="72f3754880f31" data-cart="38" class="update_item_cart" title="Update Cart"><i class="fa fa-refresh" aria-hidden="true"></i></a></span>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                      <p class="menu-price">£8.90</p>
+                    </div>
+                    
+                    
+                    
+                </div>
+                            
+                            
+                            
+                            
+            </div>
+              </div>
+                                        <section class="basket-order-view p-0 p-lg-0 link-background quick_checkout_flow" id="basket-view-order-reciept">
+                                            <hr class="my-2">
+                                            <div class="collapse show">
+                                                <div class="row">
+                                                <div class="col-5 text-left px-0">
+                                                    <p>
+                                                    <span>Sub Total</span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-7 pr-0 text-right">
+                                                    <p>£8.90</p>
+                                                </div>
+                                                </div>
+                                                <div class="col col-12 px-0  p-lg-0">
+                                                <div class="total_value">
+                                                    <div class="row">
+                                                    <div class="col col-9">
+                                                        <p class="other-charges">Discount</p>
+                                                    </div>
+                                                    <div class="col text-right">
+                                                        <p class=" discount-amount-applied text-right"> £0.00</p>
+                                                    </div>
+                                                    </div>
+                                                                <div class="row">
+                                                    <div class="col col-9">
+                                                        <p class="other-charges">Delivery Fee</p>
+                                                    </div>
+                                                    <div class="col text-right">
+                                                        <p class=" discount-amount-applied text-right fetch_delivery_fee">£7.00</p>
+                                                    </div>
+                                                    </div>
+                                                            
+                                                    <div class="row">
+                                                    <div class="col col-9">
+                                                        <p class="other-charges">Service Charge</p>
+                                                    </div>
+                                                    <div class="col text-right">
+                                                        <p class=" discount-amount-applied text-right">£0.50</p>
+                                                    </div>
+                                                    </div>
+                                                    
+                                                                
+                                                    <div class="row">
+                                                    <div class="col col-9">
+                                                        <p class="other-charges">Total Item</p>
+                                                    </div>
+                                                    <div class="col text-right">
+                                                        <p class=" discount-amount-applied text-right">1.00</p>
+                                                    </div>
+                                                    </div>
+                                                    
+                                                    <div class="row">
+                                                    <div class="col-5 text-left px-0">
+                                                        <p>
+                                                        <span>Grand Total</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-7 pr-0 text-right">
+                                                        <p>£16.40</p>
+                                                    </div>
+                                                    </div>
+                                                    
+                                                    
+                                                    </div>
+                                                </div>
+                                                
+                                                </div>
+                
+            
+                                        <hr class="my-2">
+            
+        
+        
+                                        <div class="row total_value">
+                                            <div class="col mt-3">
+                                                <button type="button" class="btn btn-proceed btn-lg btn-block" id="quick_checkout_button">
+                                                    <span>Checkout</span>
+                                                </button>
+                                            </div>
+                                        </div>
+          
+          
+                                        </section>
+                                    </form>
+                                </span>
+                            </div>
+                                
+                            <br>
+                            
+                            <!-- Button trigger modal -->
+                            <a class="allergy" data-toggle="modal" data-target="#exampleModal">
+                                <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Do you have an allergy or other dietary requirement?
+                            </a>
+                            </section>
+                        </div>
+                    </div>
+                </div>
