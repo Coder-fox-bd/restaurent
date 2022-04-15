@@ -4,7 +4,7 @@
         <div class="col-md-6 col-xs-12 d-flex align-items-center">
           <p class="mb-0 phone pl-md-2">
             <a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> {{$ContactDetail->contact_phone}}</a> 
-            <a href="#"><span class="fa fa-paper-plane mr-1"></span> info@corianderrestaurants.co.uk</a>
+            <a href="#"><span class="fa fa-paper-plane mr-1"></span> {{ $contact->contact_email }}</a>
           </p>
         </div>
         <div class="col-md-6 col-xs-12 d-flex justify-content-md-end">

@@ -201,6 +201,6 @@ $Seo=$objSTD->Seo();
           
         });
     </script>
-    
-</script>
+    	<!-- NiceScroll plugin -->
+	<script type="text/javascript" src="{{url('front-theme/js/jquery.nicescroll.min.js')}}"></script>
 @endsection

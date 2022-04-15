@@ -164,6 +164,7 @@ $Seo=$objSTD->Seo();
     
     
     @include('frontend.extra.cart-js')
-    
+    <!-- NiceScroll plugin -->
+	<script type="text/javascript" src="{{url('front-theme/js/jquery.nicescroll.min.js')}}"></script>
 @endsection
 
