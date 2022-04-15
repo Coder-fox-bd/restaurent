@@ -15,14 +15,22 @@
             <li class="nav-item {{ Request::path() == 'contact-us' ? 'selected' : '' }}">
               <a class="nav-link" href="{{url('contact-us')}}">Contact Us</a>
             </li>
-        
-            <li class="nav-item">
-              <a class="nav-link" href="https://coriandermanchester.co.uk/central-chorlton/auth/registration">Register</a>
-            </li>
-            
-             <li class="nav-item">
-              <a class="nav-link" href="https://coriandermanchester.co.uk/central-chorlton/auth/login">Log in</a>
-            </li>       
+            @if(Auth::check())
+                <li class="nav-item"><a href="{{url('user/dashboard')}}"><i class="fa fa-user"></i>Profile : {{Auth::user()->name}}</a></li>
+                <li><a class="logoutFront nav-link" href="javascript:void(0);">
+                        <i class="fa fa-lock"></i> Logout
+                    </a>
+                </li>
+                <div style=" height: 0px; width: 0px; opacity: 0px;">
+                    <form method="post" style="opacity: 0px;" id="logoutFront" action="{{url('logout')}}" >
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <button type="submit" style="height: 0px; width: 0px; background: none; opacity: 0px;" class="btn"></button>
+                    </form> 
+                </div>
+            @else
+                <li class="nav-item"><a class="nav-link" href="{{url('new-account')}}"><i class="fa fa-user"></i>Register</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{url('user-login')}}"><i class="fa fa-unlock-alt"></i> Login</a></li>
+            @endif
         </ul>
 </div>
       
@@ -54,14 +62,22 @@
             <li class="nav-item {{ Request::path() == 'contact-us' ? 'selected' : '' }}">
                 <a class="nav-link" href="{{url('contact-us')}}">Contact Us</a>
             </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="https://coriandermanchester.co.uk/central-chorlton/auth/registration">Register</a>
-            </li>
-            
-             <li class="nav-item">
-              <a class="nav-link" href="https://coriandermanchester.co.uk/central-chorlton/auth/login">Log in</a>
-            </li>
+            @if(Auth::check())
+                <li class="nav-item"><a href="{{url('user/dashboard')}}"><i class="fa fa-user"></i>Profile : {{Auth::user()->name}}</a></li>
+                <li><a class="logoutFront nav-link" href="javascript:void(0);">
+                        <i class="fa fa-lock"></i> Logout
+                    </a>
+                </li>
+                <div style=" height: 0px; width: 0px; opacity: 0px;">
+                    <form method="post" style="opacity: 0px;" id="logoutFront" action="{{url('logout')}}" >
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <button type="submit" style="height: 0px; width: 0px; background: none; opacity: 0px;" class="btn"></button>
+                    </form> 
+                </div>
+            @else
+                <li class="nav-item"><a class="nav-link" href="{{url('new-account')}}"><i class="fa fa-user"></i>Register</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{url('user-login')}}"><i class="fa fa-unlock-alt"></i> Login</a></li>
+            @endif
                     
         </ul>   
     </div>
