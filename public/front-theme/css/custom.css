@@ -116,9 +116,7 @@ box-shadow: 0px 0px 17px 0px rgba(0,0,0,0.75);
     color: #FFFFFF !important;
     display: block;
     margin: 0 28px;
-     padding: 2px 5px; 
-    position: absolute;
-    line-height: 18px !important;
+    padding: 1px 5px; 
 }
 /*table booking*/
 .form-style-1 {
@@ -955,7 +953,7 @@ animation: AnimationName 30s ease infinite;
     padding-top: 10px;
 }
 .restaurantOffers p {
-    background-color: #cd390c !important;
+    background-color: #4caf50 !important;
     color: #fff !important;
     padding: 5px 0px;
     font-size: 13px;

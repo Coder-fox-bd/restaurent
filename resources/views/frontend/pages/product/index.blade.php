@@ -9,10 +9,6 @@ $Seo=$objSTD->Seo();
     <meta name="keywords" content="{{$Seo->meta}}">
 @endsection
 @section('content')	
-
-
-
-
     <div class="sectionWrapper">
         <div class="container">
             <div class="row">
@@ -28,17 +24,34 @@ $Seo=$objSTD->Seo();
                                 <section id="detail_view_menu">
                                     <div class="row">
                                         @include('frontend.extra.ros_menu')
+
+                                        @include('frontend.extra.cart',compact($orderINfoText))
                                     </div>
                                 </section>
                             </div>
                         </div>
                     </div>
                 </div>    
-                @include('frontend.extra.cart',compact($orderINfoText))
-
             </div>
         </div>
     </div>
+
+    @if(isset($orderINfoText))
+    <div class="modal" id="alergy_alert" style="z-index: 9999;">
+        <div class="modal-sandbox"></div>
+        <div class="modal-box">
+            <div class="modal-header">
+                <div class="close-modal">✖</div> 
+                <h4><i class="fa fa-info-circle"></i> Allergy & dietary information</h4>
+            </div>
+            <div class="modal-body" style="padding:20px 10px 10px 10px;">       
+                <div class="cell-12">
+                   {!!html_entity_decode($orderINfoText->allergy_alert)!!} 
+                </div>               
+            </div>
+        </div>
+    </div>
+    @endif
 @endsection	
 
 

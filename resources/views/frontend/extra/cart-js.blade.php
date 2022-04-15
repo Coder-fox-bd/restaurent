@@ -57,7 +57,7 @@
             //console.log('sssss-',totalPrice);
             console.log('Total Price =',totalPrice);
             console.log('Total Price without Special Price =',(totalPrice-specialItemPrice));
-            $(".mini_cart-subtotal").children("span:eq(0)").html(parseFloat(totalPrice).toFixed(2));
+            $("#mini_cart_subtotal").html(parseFloat(totalPrice).toFixed(2));
 
             var tax_rate=$(".tax-space").children("div:eq(0)").children("span:eq(0)").html();
 
