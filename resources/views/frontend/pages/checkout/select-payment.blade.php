@@ -11,6 +11,7 @@ $Seo=$objSTD->Seo();
 @section('css')
 <link rel="stylesheet" href="{{url('front-theme/css/style.css')}}">
 <link rel="stylesheet" href="{{url('front-theme/css/responsive.css')}}">
+<link rel="stylesheet" href="{{url('front-theme/css/skins/default.css')}}">
 @endsection
 @section('content')
 <div id="contentWrapper">
@@ -124,5 +125,6 @@ $Seo=$objSTD->Seo();
             });
         });
     </script>
+		<!-- NiceScroll plugin -->
+		<script type="text/javascript" src="{{url('front-theme/js/jquery.nicescroll.min.js')}}"></script>
 @endsection
-
