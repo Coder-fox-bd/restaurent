@@ -16,7 +16,7 @@
               <a class="nav-link" href="{{url('contact-us')}}">Contact Us</a>
             </li>
             @if(Auth::check())
-                <li class="nav-item"><a class="nav-link" href="{{url('user/dashboard')}}"><i class="fa fa-user"></i>Profile : {{Auth::user()->name}}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{url('user/dashboard')}}"><i class="fa fa-user"></i>Profile</a></li>
                 <li><a class="logoutFront nav-link" href="javascript:void(0);">
                         <i class="fa fa-lock"></i> Logout
                     </a>
@@ -63,7 +63,7 @@
                 <a class="nav-link" href="{{url('contact-us')}}">Contact Us</a>
             </li>
             @if(Auth::check())
-                <li class="nav-item"><a class="nav-link" href="{{url('user/dashboard')}}"><i class="fa fa-user"></i>Profile : {{Auth::user()->name}}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{url('user/dashboard')}}"><i class="fa fa-user"></i>Profile</a></li>
                 <li><a class="logoutFront nav-link" href="javascript:void(0);">
                         <i class="fa fa-lock"></i> Logout
                     </a>
