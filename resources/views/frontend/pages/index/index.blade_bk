@@ -1,5 +1,9 @@
 @extends('frontend.layout.master')
 @section('title','Home')
+@section('css')
+<link rel="stylesheet" href="{{url('front-theme/css/style.css')}}">
+<link rel="stylesheet" href="{{url('front-theme/css/responsive.css')}}">
+@endsection
 @section('content')	
 <?php
 $objSTD=new App\Http\Controllers\MenuPageController2();

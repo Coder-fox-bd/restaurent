@@ -8,6 +8,10 @@ $Seo=$objSTD->Seo();
     <meta name="description" content="{{$page_name}}">
     <meta name="keywords" content="{{$page_name}}">
 @endsection
+@section('css')
+<link rel="stylesheet" href="{{url('front-theme/css/style.css')}}">
+<link rel="stylesheet" href="{{url('front-theme/css/responsive.css')}}">
+@endsection
 @section('content')	
     <div class="page-title title-1">
         <div class="container">

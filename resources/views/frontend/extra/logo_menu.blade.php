@@ -28,7 +28,7 @@
                     </form> 
                 </div>
             @else
-                <li class="nav-item"><a class="nav-link" href="{{url('new-account')}}"><i class="fa fa-user"></i>Register</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{url('new-account')}}"><i class="fa fa-user"></i> Register</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{url('user-login')}}"><i class="fa fa-unlock-alt"></i> Login</a></li>
             @endif
         </ul>
@@ -75,7 +75,7 @@
                     </form> 
                 </div>
             @else
-                <li class="nav-item"><a class="nav-link" href="{{url('new-account')}}"><i class="fa fa-user"></i>Register</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{url('new-account')}}"><i class="fa fa-user"></i> Register</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{url('user-login')}}"><i class="fa fa-unlock-alt"></i> Login</a></li>
             @endif
                     

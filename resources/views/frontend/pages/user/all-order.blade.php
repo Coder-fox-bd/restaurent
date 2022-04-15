@@ -1,5 +1,9 @@
 @extends('frontend.layout.master')
 @section('title','All Order | ')
+@section('css')
+<link rel="stylesheet" href="{{url('front-theme/css/style.css')}}">
+<link rel="stylesheet" href="{{url('front-theme/css/responsive.css')}}">
+@endsection
 @section('content')
 <div id="contentWrapper">
 
@@ -116,4 +120,9 @@
 	</div>
 	
 </div>
+@endsection
+
+@section('slider-js')
+	<!-- NiceScroll plugin -->
+	<script type="text/javascript" src="{{url('front-theme/js/jquery.nicescroll.min.js')}}"></script>
 @endsection

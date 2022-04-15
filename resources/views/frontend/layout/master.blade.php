@@ -61,9 +61,9 @@
     <body>
 
         <!-- site preloader start -->
-        <div class="page-loader">
+        {{-- <div class="page-loader">
             <div class="loader-in"></div>
-        </div>
+        </div> --}}
         <!-- site preloader end -->
 
         <div class="pageWrapper">

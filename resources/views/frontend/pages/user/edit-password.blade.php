@@ -1,6 +1,10 @@
 @extends('frontend.layout.master')
 @section('title','View Profile | ')
 @section('content')
+@section('css')
+<link rel="stylesheet" href="{{url('front-theme/css/style.css')}}">
+<link rel="stylesheet" href="{{url('front-theme/css/responsive.css')}}">
+@endsection
 <div id="contentWrapper">
 
 	<?php 
@@ -127,4 +131,8 @@
 	</div>
 	
 </div>
+@endsection
+@section('slider-js')
+	<!-- NiceScroll plugin -->
+	<script type="text/javascript" src="{{url('front-theme/js/jquery.nicescroll.min.js')}}"></script>
 @endsection
