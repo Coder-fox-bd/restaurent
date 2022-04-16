@@ -1166,7 +1166,7 @@
                         'data': {'item_id':item_id,'item_sub_cat_name':item_sub_cat_name,'_token':"{{csrf_token()}}"},
 
                         'success': function (data) {
-                            toastr.success('Order added to cart');
+                            toastr.success('Item added to cart');
                             //tmp = data;
 
                          //   console.log("Processing : "+data);
