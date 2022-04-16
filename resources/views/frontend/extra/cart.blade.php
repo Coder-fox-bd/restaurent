@@ -76,14 +76,14 @@
                                 </div>
                                 @if($tab->collection_only==1)
                                     <input style="display: none;"  type="radio" value="Delivery" name="rec" id="rec_1"> 
-                                    <label class="cell-8 btn custom-btn" style="margin-right: 20px; margin-left: 10px;  text-transform: capitalize; ">
+                                    <label class="cell-8 btn custom-btn">
                                         <input  checked="checked" readonly="readonly" style="position: absolute; margin-top:8px; margin-left: -78px;" type="radio" value="Collect" name="rec" id="rec_0"> 
                                         <span> Only Collection</span>
                                     </label>
 
                                 @else
                                     <div class="text-center">
-                                    <label class="cell-5 btn btn-success" style="margin-right: 20px; margin-left: 10px; text-transform: capitalize;">
+                                    <label class="cell-5 btn btn-success">
                                         <input checked="checked" style="position: absolute; margin-top:8px; margin-left: -17px; "  type="radio" value="Delivery" name="rec" id="rec_1"> 
                                         Delivery
                                     </label>
