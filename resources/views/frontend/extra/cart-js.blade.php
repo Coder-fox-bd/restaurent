@@ -1,3 +1,4 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style type="text/css">
 
     .bgbor {
@@ -1165,7 +1166,7 @@
                         'data': {'item_id':item_id,'item_sub_cat_name':item_sub_cat_name,'_token':"{{csrf_token()}}"},
 
                         'success': function (data) {
-
+                            toastr.success('Order added to cart');
                             //tmp = data;
 
                          //   console.log("Processing : "+data);
