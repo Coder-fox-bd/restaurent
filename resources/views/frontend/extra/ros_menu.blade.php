@@ -59,8 +59,6 @@
                                         </tr>
                                     @endif
                                     <?php 
-                                    foreach ($cat['product_row'] as $key => $row) 
-                                    {
                                         $interface=$row['interface'];
                                     ?>
                                         <tr>
@@ -399,8 +397,6 @@
                                                 </div>
                                                 </div>';
                                         }
-
-                                    }
                                     ?>         
                                 </tbody>
                             </table>
