@@ -1015,7 +1015,6 @@
                             'data': {'rec':item_id,'_token':"{{csrf_token()}}"},
 
                             'success': function (data) {
-                                // toastr.success('Item added to cart');
                                 //tmp = data;
 
                               //  console.log("Processing : "+data);
