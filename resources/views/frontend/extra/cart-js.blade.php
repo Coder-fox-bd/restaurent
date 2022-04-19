@@ -1015,6 +1015,7 @@
                             'data': {'rec':item_id,'_token':"{{csrf_token()}}"},
 
                             'success': function (data) {
+                                
                                 //tmp = data;
 
                               //  console.log("Processing : "+data);
