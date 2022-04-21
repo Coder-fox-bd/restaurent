@@ -1,5 +1,5 @@
 <?php 
-$arrayCurrency=App\Http\Controllers\MenuPageController2::CurrencyDetail();
+$arrayCurrency=MenuPageController::CurrencyDetail();
 ?>
 <?php $product_info=$product; ?>
 <div id="center_column" class="center_column col-xs-12 col-sm-12 col-md-9">

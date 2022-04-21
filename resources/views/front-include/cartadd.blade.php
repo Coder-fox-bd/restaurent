@@ -1,6 +1,6 @@
 <?php 
-$arrayDD=App\Http\Controllers\MenuPageController2::siteBasic();
-$arrayCurrency=App\Http\Controllers\MenuPageController2::CurrencyDetail();
+$arrayDD=MenuPageController::siteBasic();
+$arrayCurrency=MenuPageController::CurrencyDetail();
 ?>
 <script type="text/javascript" src="{{url('js/sweetalert.min.js')}}"></script>
 <script>

@@ -1,5 +1,5 @@
 <?php
-$objSTD=new App\Http\Controllers\MenuPageController2;
+$objSTD=new MenuPageController;
 $SliderData=$objSTD->SliderData();
 $Seo=$objSTD->Seo();
 ?>
@@ -20,7 +20,7 @@ $Seo=$objSTD->Seo();
                 @include('frontend.extra.slider')
                 <!-- Revolution slider end -->
                 <?php 
-                    $objSTD=new App\Http\Controllers\MenuPageController2;
+                    $objSTD=new MenuPageController;
                     $WelcomeContent = $objSTD->WelcomeContent();
                 ?>
                 <!-- Welcome Box start -->

@@ -38,7 +38,7 @@ class ContactDetailController extends Controller {
 
     public function __construct(){ 
 
-        $this->sdc = new MenuPageController2(); 
+        $this->sdc = new MenuPageController(); 
 
     }
 

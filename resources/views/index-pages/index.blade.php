@@ -1,5 +1,5 @@
 @extends('front-layout.master')
-<?php $arrayCurrency=App\Http\Controllers\MenuPageController2::CurrencyDetail(); ?>
+<?php $arrayCurrency=MenuPageController::CurrencyDetail(); ?>
 @if(isset($slider))
 @section('slider')
 <div id="field_slideshow">

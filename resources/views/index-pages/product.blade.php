@@ -1,8 +1,8 @@
 @extends('front-layout.master')
 
-<?php $arrayCurrency=App\Http\Controllers\MenuPageController2::CurrencyDetail(); ?>
+<?php $arrayCurrency=MenuPageController::CurrencyDetail(); ?>
 @section('content')
-<?php App\Http\Controllers\MenuPageController2::recentProductView($product->id); ?>
+<?php MenuPageController::recentProductView($product->id); ?>
 <div class="columns-container">
     <div id="columns" class="container">
         <div id="slider_row" class="row"></div>

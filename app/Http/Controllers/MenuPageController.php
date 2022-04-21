@@ -36,7 +36,7 @@ use Mpdf\Mpdf;
 //MenuPageController::loggedUser('company_prefix')
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-class MenuPageController2 extends Facade {
+class MenuPageController extends Facade {
 
     /**
      * Display a listing of the resource.

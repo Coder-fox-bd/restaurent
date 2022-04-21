@@ -1,5 +1,5 @@
 <?php
-$objSTD=new App\Http\Controllers\MenuPageController2();
+$objSTD=new MenuPageController();
 $Seo=$objSTD->Seo();
 ?>
 @extends('frontend.layout.master')
@@ -26,7 +26,7 @@ $Seo=$objSTD->Seo();
         </div>
     </div>
     <?php 
-        $objSTD=new App\Http\Controllers\MenuPageController2();
+        $objSTD=new MenuPageController();
         $Seo=$objSTD->Seo();
         $AppsSetting=$objSTD->AppsSetting();
         

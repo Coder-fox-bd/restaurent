@@ -18,8 +18,6 @@ use App\ContactDetail;
 
 use DB;
 
-use App\Http\Controllers\MenuPageController2;
-
 class ContactDetailController extends Controller {
 
 
@@ -40,7 +38,7 @@ class ContactDetailController extends Controller {
 
     public function __construct(){ 
 
-        $this->sdc = new MenuPageController2(); 
+        $this->sdc = new MenuPageController(); 
 
     }
 

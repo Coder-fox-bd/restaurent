@@ -1,5 +1,5 @@
 <?php 
-$arrayDD=App\Http\Controllers\MenuPageController2::siteBasic();
+$arrayDD=MenuPageController::siteBasic();
 //echo "<pre>";
 $categoryAll=$arrayDD['cats'];
 $brandAll=$arrayDD['brn'];

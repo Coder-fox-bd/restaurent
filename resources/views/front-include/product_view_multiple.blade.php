@@ -1,4 +1,4 @@
-<?php $arrayCurrency=App\Http\Controllers\MenuPageController2::CurrencyDetail(); ?>
+<?php $arrayCurrency=MenuPageController::CurrencyDetail(); ?>
 <div  id="center_column" class="center_column col-xs-12 col-sm-12 col-md-9">
     <div itemscope itemtype="https://schema.org/Product" class="product-detail">
         <meta itemprop="url" content="#">

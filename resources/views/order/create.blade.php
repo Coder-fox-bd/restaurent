@@ -24,7 +24,7 @@ Manual Order Info
         <div class="panel panel-invoice rounded">
             <div class="panel-heading">
                 <div class="pull-left">
-                    <input type="hidden" name="_token" value="<?php echo csrf_token(); $tracking=str_random(5); ?>">
+                    <input type="hidden" name="_token" value="<?php echo csrf_token(); $tracking=Str::random(5); ?>">
                     <input type="hidden" name="tracking" value="<?php echo $tracking; ?>">
                     <h3 class="no-margin">New Manual Order : <code>Tracking No.#<?php echo $tracking; ?></code></h3>
                 </div>

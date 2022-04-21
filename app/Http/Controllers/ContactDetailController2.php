@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\tableBooking;
 use App\ContactDetail;
 use DB;
-use App\Http\Controllers\MenuPageController2;
 class ContactDetailController extends Controller {
 
     /**
@@ -19,7 +18,7 @@ class ContactDetailController extends Controller {
     private $moduleName="";
     private $sdc;
     public function __construct(){ 
-        $this->sdc = new MenuPageController2(); 
+        $this->sdc = new MenuPageController(); 
     }
 
     public function index() {

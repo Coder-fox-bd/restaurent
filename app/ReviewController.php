@@ -5,7 +5,6 @@ use App\Http\Controllers\Controller;
 use App\Review;
 use Illuminate\Http\Request;
 use DB;
-use App\Http\Controllers\MenuPageController2;
 class ReviewController extends Controller {
 
 	/**
@@ -16,7 +15,7 @@ class ReviewController extends Controller {
 	private $moduleName="";
     private $sdc;
     public function __construct(){ 
-        $this->sdc = new MenuPageController2(); 
+        $this->sdc = new MenuPageController(); 
     }
 
 	public function index()

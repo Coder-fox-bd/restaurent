@@ -1,5 +1,5 @@
 <?php 
-    $objSTD=new App\Http\Controllers\MenuPageController2();
+    $objSTD=new MenuPageController();
     $customerSupport=$objSTD->CustomerSupport();
     $ContactDetail=$objSTD->ContactDetail();
     $Seo=$objSTD->Seo();

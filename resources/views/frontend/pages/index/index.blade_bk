@@ -6,7 +6,7 @@
 @endsection
 @section('content')	
 <?php
-$objSTD=new App\Http\Controllers\MenuPageController2();
+$objSTD=new MenuPageController();
 $SliderData=$objSTD->SliderData();
 ?>
  
@@ -14,7 +14,7 @@ $SliderData=$objSTD->SliderData();
                 @include('frontend.extra.slider')
                 <!-- Revolution slider end -->
                 <?php 
-                    $objSTD=new App\Http\Controllers\MenuPageController2();
+                    $objSTD=new MenuPageController();
                     $WelcomeContent = $objSTD->WelcomeContent();
                 ?>
                 <!-- Welcome Box start -->

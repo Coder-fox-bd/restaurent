@@ -1,6 +1,6 @@
 <?php 
-$arrayDD=App\Http\Controllers\MenuPageController2::siteBasic();
-$arrayCurrency=App\Http\Controllers\MenuPageController2::CurrencyDetail();
+$arrayDD=MenuPageController::siteBasic();
+$arrayCurrency=MenuPageController::CurrencyDetail();
 //echo "<pre>";
 $categoryAll=$arrayDD['cats'];
 $brandAll=$arrayDD['brn'];
@@ -176,9 +176,9 @@ $brandAll=$arrayDD['brn'];
                                 
                                 <dl class="products" id="cartProductsMini">
                                     
-                                    @if(isset(App\Http\Controllers\MenuPageController2::shoppingCart()['products']))
+                                    @if(isset(MenuPageController::shoppingCart()['products']))
                                         <?php $incre=0; ?>
-                                        @foreach(App\Http\Controllers\MenuPageController2::shoppingCart()['products'] as $pro)
+                                        @foreach(MenuPageController::shoppingCart()['products'] as $pro)
                                         <dt class="first_item last_item" data-id="cart_block_product_2_7_0" style="display: block;">
                                             <a class="cart-images" href="{{url('product/'.$pro['item']->id.'/'.$pro['item']->name)}}" title="{{$pro['item']->name}}">
                                                 <img src="{{url('upload/product/'.$pro['item']->photo)}}" style="height:60px !important;" alt="{{$pro['item']->name}}">
@@ -217,11 +217,11 @@ $brandAll=$arrayDD['brn'];
                                 <p class="cart_block_no_products" style="display: none;"> No products</p>
                                 <div class="cart-prices">
                                     <div class="cart-prices-line first-line"> 
-                                        <span class="price cart_block_shipping_cost ajax_cart_shipping_cost unvisible" style="display: inline;" id="totalQty">{{App\Http\Controllers\MenuPageController2::shoppingCart()['totalQty']}}</span> 
+                                        <span class="price cart_block_shipping_cost ajax_cart_shipping_cost unvisible" style="display: inline;" id="totalQty">{{MenuPageController::shoppingCart()['totalQty']}}</span> 
                                         <span class="unvisible" style="display: inline;"> Total Quantity </span>
                                     </div>
                                     <div class="cart-prices-line last-line"> 
-                                        <span class="price cart_block_total ajax_block_cart_total">{{$arrayCurrency->icon}}<b id="totalPrice">{{App\Http\Controllers\MenuPageController2::shoppingCart()['totalPrice']}}</b></span> 
+                                        <span class="price cart_block_total ajax_block_cart_total">{{$arrayCurrency->icon}}<b id="totalPrice">{{MenuPageController::shoppingCart()['totalPrice']}}</b></span> 
                                         <span>Total</span>
                                     </div>
                                 </div>

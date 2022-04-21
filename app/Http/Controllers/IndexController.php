@@ -39,7 +39,6 @@ use App\TodayOffer;
 use App\Extrapage;
 use App\Review;
 use App\GalleryPhoto;
-use App\Http\Controllers\MenuPageController2;
 
 class IndexController extends Controller {
 
@@ -48,7 +47,7 @@ class IndexController extends Controller {
     private $minOrderforDelivery=20;
     private $minOrderDeliveryFailedText='Free Delivery is available only, when minimum order amount is more than £20.00 ';
     public function __construct(){ 
-        $this->sdc = new MenuPageController2(); 
+        $this->sdc = new MenuPageController(); 
     }
     
     public function GenaratePageDataLimit($limit='')

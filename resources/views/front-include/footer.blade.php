@@ -22,12 +22,12 @@
                     @endif
                 </div>
                 
-                @if(isset(App\Http\Controllers\MenuPageController2::recentProductViewShow()['data']))
+                @if(isset(MenuPageController::recentProductViewShow()['data']))
                 <div class="footer-block footer-recenpost col-xs-12 col-sm-6 col-md-3">
                     <h4 class="title_block title_font">Recently Viewed</h4>
                     <ul class="toggle-footer">
 
-                            @foreach(App\Http\Controllers\MenuPageController2::recentProductViewShow()['data'] as $pro)
+                            @foreach(MenuPageController::recentProductViewShow()['data'] as $pro)
                             <li>
                                 <a href="{{url('product')}}/{{$pro->id}}/{{$pro->name}}">
                                     <img src="{{url('upload/product')}}/{{$pro->photo}}"  width="100" alt="" />
@@ -43,7 +43,7 @@
                     <h4 class="title_block title_font">New Product</h4>
                     <ul class="toggle-footer">
 
-                            @foreach(App\Http\Controllers\MenuPageController2::recentProduct() as $pro)
+                            @foreach(MenuPageController::recentProduct() as $pro)
                             <li>
                                 <a href="{{url('product')}}/{{$pro->id}}/{{$pro->name}}">
                                     <img src="{{url('upload/product')}}/{{$pro->photo}}"  width="100" alt="" />
@@ -54,7 +54,7 @@
                     </ul>
                 </div>
                 @endif
-                @if(isset(App\Http\Controllers\MenuPageController2::QRCode()->qrcode))
+                @if(isset(MenuPageController::QRCode()->qrcode))
                 <div class="footer-block footer-newsletter col-xs-12 col-sm-6 col-md-3">
                     <h4 class="title_block title_font">QR Code</h4>
                     <div class="toggle-footer">

@@ -39,7 +39,6 @@ use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
 //paypal lib 
 use App\WelcomeContent;
-use App\Http\Controllers\MenuPageController2;
 
 class ProductItemController extends Controller
 {
@@ -56,7 +55,7 @@ class ProductItemController extends Controller
     public function __construct(){ 
         //$paypal_conf['client_id']
         //$paypal_conf['secret']
-        $this->sdc = new MenuPageController2(); 
+        $this->sdc = new MenuPageController(); 
         
         if($_SERVER['REMOTE_ADDR']==$this->_developer_ip)
         {

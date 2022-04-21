@@ -1,5 +1,5 @@
 <?php
-$objSTD=new App\Http\Controllers\MenuPageController2();
+$objSTD=new MenuPageController();
 $Seo=$objSTD->Seo();
 ?>
 @extends('frontend.layout.master')
