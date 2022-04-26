@@ -61,14 +61,14 @@
                     }
                 </style>
 
-                <div class="col col-12 col-lg-4 px-3 p-lg-0 mb-3">
-                    <div>
+                <div class="col col-12 col-lg-5 px-3 p-lg-0 mb-3">
+                    <div style="position: sticky; top: 10px;">
                         <div name="cart-basket-navigate">
-                            <section id="cart-Basket" class="basket-order-view my-3 p-3 p-lg-3 link-background">
+                            <section id="cart-Basket" class="basket-order-view my-3 p-2 p-lg-3 link-background">
                                 <div class="row">
                                     <div class="inner center col-md-12 text-center mb-15 border-bottom">
                                         <a href="javascript:;" class="top10 green-color change-address block text-center">
-                                            <i class="fa fa-location-arrow" aria-hidden="true"></i> Search Postcode								</a>
+                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Product Cart</a>
                                         
                                         <p class="deliverd has-success" style="color: green;font-weight: bold;"></p>
                                         <p class="not-deliverd has-danger"></p>
@@ -76,21 +76,28 @@
                                 </div>
                                 @if($tab->collection_only==1)
                                     <input style="display: none;"  type="radio" value="Delivery" name="rec" id="rec_1"> 
-                                    <label class="cell-8 btn custom-btn">
-                                        <input  checked="checked" readonly="readonly" style="position: absolute; margin-top:8px; margin-left: -78px;" type="radio" value="Collect" name="rec" id="rec_0"> 
-                                        <span> Only Collection</span>
-                                    </label>
-
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" value="Collect" name="rec" id="rec_0" class="custom-control-input">
+                                        <label class="custom-control-label" for="rec_0">Only Collection</label>
+                                    </div>
                                 @else
                                     <div class="text-center">
-                                    <label class="cell-5 btn btn-success">
-                                        <input checked="checked" style="position: absolute; margin-top:8px; margin-left: -17px; "  type="radio" value="Delivery" name="rec" id="rec_1"> 
-                                        Delivery
-                                    </label>
-                                    <label class="cell-5 btn btn-success" style=" text-transform: capitalize; padding-left: 25px;">
-                                        <input style="position: absolute; margin-top:8px; margin-left: -48px;" type="radio" value="Collect" name="rec" id="rec_0"> 
-                                        <span>Collection</span>
-                                    </label>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" value="Delivery" name="rec" id="rec_1" class="custom-control-input">
+                                            <label class="custom-control-label" for="rec_1">Delivery</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" value="Collect" name="rec" id="rec_0" class="custom-control-input">
+                                            <label class="custom-control-label" for="rec_0">Collection</label>
+                                        </div>
+                                        {{-- <label class="cell-5 btn btn-success">
+                                            <input checked="checked" style="position: absolute; margin-top:8px; margin-left: -17px; " type="radio" value="Delivery" name="rec" id="rec_1"> 
+                                            Delivery
+                                        </label>
+                                        <label class="cell-5 btn btn-success" style=" text-transform: capitalize; padding-left: 25px;">
+                                            <input style="position: absolute; margin-top:8px; margin-left: -48px;" type="radio" value="Collect" name="rec" id="rec_0" checked="checked"> 
+                                            <span>Collection</span>
+                                        </label> --}}
                                     </div>
 
                                 @endif
@@ -162,19 +169,14 @@
                                         <div class="right total-cart-check-price">£<span>0.20</span></div>
                                     </div>
                                 </div>
-
-                                <hr class="my-2">
-           
-                                    
-                                <br>
                                 
                                 <!-- Button trigger modal -->
                                 @if ($orderINfoText->isoffline==0)
-                                <div class="checkout">
-                                    <a class="btn empty-cart" href="javascript:void(0);">
+                                <div class="checkout text-center">
+                                    <a class="btn btn-success empty-cart" href="javascript:void(0);">
                                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                                         Empty Cart</a>
-                                    <a class="btn checkout-page" href="javascript:void(0);">
+                                    <a class="btn btn-success checkout-page" href="javascript:void(0);">
                                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                         Checkout 
                                     </a>
@@ -187,3 +189,4 @@
                         </div>
                     </div>
                 </div>
+                

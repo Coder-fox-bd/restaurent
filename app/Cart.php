@@ -7,6 +7,7 @@ class Cart {
     public $items = null;
     public $deliveryDetail = null;
     public $rec = "Delivery";
+    public $pickup_time = null;
     public $orderID = 0;
     public $userID = 0;
     public $totalQty = 0;

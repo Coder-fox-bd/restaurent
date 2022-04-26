@@ -1,5 +1,5 @@
 
-<div class="col col-lg-3 col-6 d-none d-lg-block mb-3 ftco-faqs img">
+{{-- <div class="col col-lg-3 col-6 d-none d-lg-block mb-3 ftco-faqs img">
     <div style="position: sticky; top: 10px;">
     <section id="menu-category" class=" p-lg-3 my-3 link-background" data-spy="affix">
         <h3>ITEMS</h3>
@@ -14,8 +14,8 @@
         </ul>
     </section>
     </div>
-</div>
-<div class="col-6 col-12 col-lg-5 search-takeaways pl-lg-0 mb-3">
+</div> --}}
+<div class="col-7 col-12 col-lg-6 search-takeaways pl-lg-0 mb-3">
     <div class="accordion">
         <div class="card">
             <?php 

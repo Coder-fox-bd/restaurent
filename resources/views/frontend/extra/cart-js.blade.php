@@ -934,7 +934,7 @@
 
                 {
 
-                    showCart=350;
+                    showCart=250;
 
                 }
 
@@ -942,7 +942,7 @@
 
                 {
 
-                    showCart=250;
+                    showCart=150;
 
                 }
 
@@ -1018,7 +1018,7 @@
                                 
                                 //tmp = data;
 
-                              //  console.log("Processing : "+data);
+                            //    console.log("Processing : "+data);
 
                                 loadCart(data);
 
