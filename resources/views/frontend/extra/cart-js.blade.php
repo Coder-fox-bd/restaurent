@@ -976,7 +976,28 @@
 
                     {
 
-                        selecVal='Collect';
+                        $("#pickUp").modal('show');
+                        $( "#saveTime" ).click(function() {
+                            pickup_time = document.getElementById("pickUpTime").value;
+                            $("#pickUp").modal('hide');
+                            selecVal='Collect';
+
+                            var item_id=selecVal;
+                            var addtoCartURL="{{url('order-item/add-to-cart')}}";
+                            //------------------------Ajax POS Start-------------------------//
+                            $.ajax({
+                                'async': false,
+                                'type': "POST",
+                                'global': false,
+                                'dataType': 'json',
+                                'url': addtoCartURL,
+                                'data': {'rec':item_id, 'pickup_time':pickup_time, '_token':"{{csrf_token()}}"},
+                                'success': function (data) {
+                                    loadCart(data);
+                                    $("#orderModal").modal('hide');
+                                }
+                            });
+                        });
 
                     }
 

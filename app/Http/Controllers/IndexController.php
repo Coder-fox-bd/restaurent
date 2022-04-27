@@ -928,14 +928,15 @@ class IndexController extends Controller {
         //dd($customer_id);
         //dd($delivery_info);
         
-
+        // dd($cart);
         //$product=Product::all();
         $defultReturn=[
             'delivery_info' => $delivery_info,
             'product' => $cart->items,
             'totalQty' => $cart->totalQty,
             'totalPrice' => $cart->totalPrice,
-            'rec' => $cart->rec
+            'rec' => $cart->rec,
+            'pickup_time' => $cart->pickup_time
         ];
 
         if($this->checkCommonDiscount())

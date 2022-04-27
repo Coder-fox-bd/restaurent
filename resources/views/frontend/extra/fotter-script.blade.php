@@ -180,13 +180,11 @@
          <!-- <script src="assets/frontend/js/jquery.easing.1.3.js"></script> -->
          <script src="{{ asset('new_design/assets/frontend/js/jquery.waypoints.min.js') }}"></script>
          <script src="{{ asset('new_design/assets/frontend/js/jquery.stellar.min.js') }}"></script>
-         <script src="assets/frontend/js/bootstrap-datepicker.js"></script>
-         <script src="assets/frontend/js/jquery.timepicker.min.js"></script>
+         {{-- <script src="assets/frontend/js/bootstrap-datepicker.js"></script> --}}
+         {{-- <script src="assets/frontend/js/jquery.timepicker.min.js"></script> --}}
          <script src="{{ asset('new_design/assets/frontend/js/owl.carousel.min.js') }}"></script>
          <script src="{{ asset('new_design/assets/frontend/js/jquery.magnific-popup.min.js') }}"></script>
          <script src="{{ asset('new_design/assets/frontend/js/main.js') }}"></script>
-       
-       
        
        
         <script>

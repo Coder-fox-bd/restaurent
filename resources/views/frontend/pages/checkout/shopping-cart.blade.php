@@ -65,10 +65,11 @@ $Seo=$objSTD->Seo();
 						<table class="table-style2">
 							<thead>
 								<tr>
-									<th class="left-text" colspan="2">Item in Shopping Cart</th>
-									<th class="width-10">Price</th>
-									<th class="width-50" style="width: 130px;">Qty</th>
-									<th class="width-10">Subtotal</th>
+									<th class="left-text"></th>
+									<th class="left-text">Item in Shopping Cart</th>
+									<th class="">Price</th>
+									<th class="" style="width: 130px;">Qty</th>
+									<th class="">Subtotal</th>
 								</tr>
 							</thead>
 							<tbody id="scTab">
@@ -111,13 +112,13 @@ $Seo=$objSTD->Seo();
 												<b>{{$pro['item']->name}} </b>
 												@endif
 											</td>
-											<td class="width-50 center">£<span>{{number_format(($pro['price']/$pro['qty']),2)}}</span></td>
+											<td class="center">£<span>{{number_format(($pro['price']/$pro['qty']),2)}}</span></td>
 											<td class="qty-txt-box">
-												<input type="text" class="qtyyx" readonly="readonly" style="width: 60px !important;" value="{{$pro['qty']}}">
 												<i style="font-size: large; color: #e7512f;" class="fa fa-plus-circle fa-2x"></i>
+												<input type="text" class="qtyyx" readonly="readonly" style="width: 60px !important;" value="{{$pro['qty']}}">
 												<i style="font-size: large; color: #e7512f;" class="fa fa-minus-circle fa-2x"></i>
 											</td>
-											<td class="width-50 center">£<span>{{number_format($pro['price'],2)}}</span></td>
+											<td class="center">£<span>{{number_format($pro['price'],2)}}</span></td>
 										</tr>
 									@endforeach
 								@endif

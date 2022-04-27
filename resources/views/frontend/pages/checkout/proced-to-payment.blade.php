@@ -12,6 +12,8 @@ $Seo=$objSTD->Seo();
 <link rel="stylesheet" href="{{url('front-theme/css/style.css')}}">
 <link rel="stylesheet" href="{{url('front-theme/css/responsive.css')}}">
 <link rel="stylesheet" href="{{url('front-theme/css/skins/default.css')}}">
+<link rel="stylesheet" href="{{ url('front-theme/calendar/css/pikaday.css') }}">
+<link rel="stylesheet" href="{{ url('front-theme/calendar/timepicker.min.css') }}">
 @endsection
 @section('content')
 <div id="contentWrapper">
@@ -113,9 +115,16 @@ $Seo=$objSTD->Seo();
 	                                </li>
 	                                
 	                                <li>
-
-	                                	<label><input type="radio" checked="checked" name="timeopt" onclick="defineTimeinDelnCol()" id="timeopt_1" value="asap"> ASAP (As soon as possible)</label>
-	                                	<label><input type="radio" name="timeopt" onclick="defineTimeinDelnCol()" id="timeopt_0" value="chooseTime"> Choose Your Time</label>
+										{{-- <div class="custom-control custom-radio">
+											<input type="radio" checked="checked" name="timeopt" onclick="defineTimeinDelnCol()" id="timeopt_1" value="asap">
+											<label class="custom-control-label" for="timeopt_1">ASAP (As soon as possible)</label>
+										</div>
+										<div class="custom-control custom-radio">
+											<input type="radio" name="timeopt" onclick="defineTimeinDelnCol()" id="timeopt_0" value="chooseTime">
+											<label class="custom-control-label" for="timeopt_0">Choose Your Time</label>
+										</div> --}}
+	                                	<label style="font-size: 16px; color:red; padding: 5px; cursor: pointer;"><input class="radio" type="radio" name="timeopt" onclick="defineTimeinDelnCol()" id="timeopt_1" value="asap" {{ !$pickup_time ? 'checked' : ''}}> ASAP (As soon as possible)</label>
+	                                	<label style="font-size: 16px; color:red; padding: 5px; cursor: pointer;"><input class="radio" type="radio" name="timeopt" onclick="defineTimeinDelnCol()" id="timeopt_0" value="chooseTime" {{ $pickup_time ? 'checked' : ''}}> Choose Your Time</label>
 	                                	
 
 	                                	<div style="display: none;" id="chooseTime">
@@ -205,7 +214,12 @@ $Seo=$objSTD->Seo();
 		}
 
 		$(document).ready(function(){
+			var delncolTime=0;
+			if($('#timeopt_0').is(':checked')) { delncolTime=1; }
+			else if($('#timeopt_1').is(':checked')) { delncolTime=2; }
 
+			if(delncolTime==1){ $("#chooseTime").show(); }
+			else if(delncolTime==0){ $("#chooseTime").hide(); }
 			/*$("input").keyup(function(){
 				 $("#zipcodeMSG").html(" + Loading Your Delivery Charge, Please Wait...!!!");
 		         var AddDeliveryUrlZIP="{'order-item/zip-code-cart')}}";

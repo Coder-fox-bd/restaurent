@@ -93,11 +93,11 @@ $Seo=$objSTD->Seo();
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <h5>What time you want to pickup the order?</h5>
+                    <h5> Choose Your Time</h5>
                     <input type="text" class="form-control" id="pickUpTime">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="saveTime">Save</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -113,6 +113,7 @@ $Seo=$objSTD->Seo();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{url('front-theme/css/custom.css')}}">
     <link rel="stylesheet" href="{{url('front-theme/css/radio-button/style.css')}}">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
     <style type="text/css">
         .display-none-sec
         {
@@ -157,6 +158,10 @@ $Seo=$objSTD->Seo();
         .toast-success {
             background-color: purple;
         }
+
+        .ui-timepicker-container{ 
+            z-index:10000 !important; 
+        }
     </style>
 @endsection
 
@@ -182,9 +187,10 @@ $Seo=$objSTD->Seo();
 
         
     </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            $('#pickUpTime').datetimepicker();
+            $('#pickUpTime').timepicker();
             var addtoCartURL="{{url('order-item/add-to-cart/json')}}";
             $.ajax({
                 'async': false,
@@ -208,11 +214,27 @@ $Seo=$objSTD->Seo();
                             {
                                 $("#pickUp").modal('show');
                                 $("#orderModal").modal('hide');
-                                pickup_time = document.getElementById("pickUpTime").value;
-                                if(pickup_time!=''){
-                                    alert(pickup_time)
+                                $( "#saveTime" ).click(function() {
+                                    pickup_time = document.getElementById("pickUpTime").value;
+                                    $("#pickUp").modal('hide');
                                     selecVal='Collect';
-                                }
+
+                                    var item_id=selecVal;
+                                    var addtoCartURL="{{url('order-item/add-to-cart')}}";
+                                    //------------------------Ajax POS Start-------------------------//
+                                    $.ajax({
+                                        'async': false,
+                                        'type': "POST",
+                                        'global': false,
+                                        'dataType': 'json',
+                                        'url': addtoCartURL,
+                                        'data': {'rec':item_id, 'pickup_time':pickup_time, '_token':"{{csrf_token()}}"},
+                                        'success': function (data) {
+                                            loadCart(data);
+                                            $("#orderModal").modal('hide');
+                                        }
+                                    });
+                                });
                             }
                             else if(document.getElementById('record_1').checked==true)
                             {
@@ -229,7 +251,7 @@ $Seo=$objSTD->Seo();
                                     'global': false,
                                     'dataType': 'json',
                                     'url': addtoCartURL,
-                                    'data': {'rec':item_id,'_token':"{{csrf_token()}}"},
+                                    'data': {'rec':item_id, '_token':"{{csrf_token()}}"},
                                     'success': function (data) {
                                         loadCart(data);
                                         $("#orderModal").modal('hide');

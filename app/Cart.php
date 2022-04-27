@@ -26,6 +26,7 @@ class Cart {
             else
             {
                 $this->rec = $oldCart->rec;
+                $this->pickup_time = $oldCart->pickup_time;
             }
 
             $this->delivery_cost = $oldCart->delivery_cost;
@@ -65,9 +66,10 @@ class Cart {
         $this->totalPrice += $item->price;
     }
 
-    public function addRec($rec='') {
+    public function addRec($rec='', $pickup_time='') {
         $this->rec = $rec;
-    }    
+        $this->pickup_time = $pickup_time;
+    } 
 
     public function mergeDeliveryCost($dd=0) {
         if($this->rec=="Delivery")
