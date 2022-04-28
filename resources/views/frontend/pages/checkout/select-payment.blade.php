@@ -52,7 +52,7 @@ $Seo=$objSTD->Seo();
 	                            <input type="hidden" name="_token" value="{{csrf_token()}}">
 	                            <ul class="form-style-1">
 	                                <li style="padding-bottom: 20px;">
-	                                    <label>Select Payment Method <span class="required">*</span></label>
+	                                    <label style="font-size: 26px;">Select Payment Method <span class="required">*</span></label>
 	                                    <select name="payment_method" class="form-control field-long">
 	                                    		<option value="">Select Payment Method</option>
 	                                    		@if($paypalData->paypal_status=="Active")
