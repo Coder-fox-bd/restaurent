@@ -53,7 +53,7 @@ $Seo=$objSTD->Seo();
 	                            <ul class="form-style-1">
 	                                <li style="padding-bottom: 20px;">
 	                                    <label>Select Payment Method <span class="required">*</span></label>
-	                                    <select name="payment_method" class="field-long">
+	                                    <select name="payment_method" class="form-control field-long">
 	                                    		<option value="">Select Payment Method</option>
 	                                    		@if($paypalData->paypal_status=="Active")
 	                                    			<option value="Paypal">Paypal</option>

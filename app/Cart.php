@@ -8,6 +8,7 @@ class Cart {
     public $deliveryDetail = null;
     public $rec = "Delivery";
     public $pickup_time = null;
+    public $pickup_date = null;
     public $orderID = 0;
     public $userID = 0;
     public $totalQty = 0;
@@ -26,6 +27,7 @@ class Cart {
             else
             {
                 $this->rec = $oldCart->rec;
+                $this->pickup_date = $oldCart->pickup_date;
                 $this->pickup_time = $oldCart->pickup_time;
             }
 
@@ -66,9 +68,10 @@ class Cart {
         $this->totalPrice += $item->price;
     }
 
-    public function addRec($rec='', $pickup_time='') {
+    public function addRec($rec='', $pickup_time='', $pickup_date) {
         $this->rec = $rec;
         $this->pickup_time = $pickup_time;
+        $this->pickup_date = $pickup_date;
     } 
 
     public function mergeDeliveryCost($dd=0) {

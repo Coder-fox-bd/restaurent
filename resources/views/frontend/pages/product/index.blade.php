@@ -94,7 +94,30 @@ $Seo=$objSTD->Seo();
                 </div>
                 <div class="modal-body">
                     <h5> Choose Your Time</h5>
-                    <input type="text" class="form-control" id="pickUpTime">
+                    {{-- <input type="text" class="form-control" id="pickUpTime"> --}}
+
+                    <label>Minimum time for collection is 35-45 mins. 
+                        It might takes more time on Friday & Saturday Nights</label>
+                        <label>
+                            <i class="fa fa-calendar" aria-hidden="true"></i> 
+                            <input type="text" class="form-control" id="pickUpDate" value="{{date('D d M Y')}}" name="booking_date" size="12" style="display: inline; width: auto; float: none;"> 
+                            <i class="fa fa-clock-o" aria-hidden="true" style="margin-left: 20px;"></i> 
+                            <select id="pickUpTime" class="form-control" name="booking_time" style="display: inline; width: auto; float: none;">
+                                <option value="00:00">Select Time</option>
+                                <?php
+                                $start=strtotime('00:00');
+                                $end=strtotime('23:30');
+
+                                for ($i=$start;$i<=$end;$i = $i + 15*60)
+                                {
+                                     echo date('g:i A',$i).'<br>';
+                                     ?>
+                                     <option value="{{date('g:i A',$i)}}">{{date('g:i A',$i)}}</option>
+                                     <?php
+                                }
+                                ?>
+                            </select>
+                        </label>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="saveTime">Save</button>
@@ -113,7 +136,8 @@ $Seo=$objSTD->Seo();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{url('front-theme/css/custom.css')}}">
     <link rel="stylesheet" href="{{url('front-theme/css/radio-button/style.css')}}">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    {{-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css"> --}}
+    <link rel="stylesheet" href="{{url('front-theme/calendar/css/pikaday.css')}}">
     <style type="text/css">
         .display-none-sec
         {
@@ -187,10 +211,23 @@ $Seo=$objSTD->Seo();
 
         
     </script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script> --}}
+    <script src="{{url('front-theme/calendar/pikaday.js')}}"></script>
+    <script>
+
+        var picker = new Pikaday(
+                {
+                    field: document.getElementById('pickUpDate'),
+                    firstDay: 1,
+                    minDate: new Date(),
+                    maxDate: new Date(2040, 12, 31),
+                    yearRange: [2020, 2040]
+                });
+
+    </script>
     <script type="text/javascript">
         $(document).ready(function(){
-            $('#pickUpTime').timepicker();
+            // $('#pickUpTime').timepicker();
             var addtoCartURL="{{url('order-item/add-to-cart/json')}}";
             $.ajax({
                 'async': false,
@@ -215,10 +252,10 @@ $Seo=$objSTD->Seo();
                                 $("#pickUp").modal('show');
                                 $("#orderModal").modal('hide');
                                 $( "#saveTime" ).click(function() {
+                                    pickup_date = document.getElementById("pickUpDate").value;
                                     pickup_time = document.getElementById("pickUpTime").value;
                                     $("#pickUp").modal('hide');
                                     selecVal='Collect';
-
                                     var item_id=selecVal;
                                     var addtoCartURL="{{url('order-item/add-to-cart')}}";
                                     //------------------------Ajax POS Start-------------------------//
@@ -228,7 +265,7 @@ $Seo=$objSTD->Seo();
                                         'global': false,
                                         'dataType': 'json',
                                         'url': addtoCartURL,
-                                        'data': {'rec':item_id, 'pickup_time':pickup_time, '_token':"{{csrf_token()}}"},
+                                        'data': {'rec':item_id, 'pickup_time':pickup_time, 'pickup_date':pickup_date, '_token':"{{csrf_token()}}"},
                                         'success': function (data) {
                                             loadCart(data);
                                             $("#orderModal").modal('hide');

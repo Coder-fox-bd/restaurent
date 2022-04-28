@@ -936,7 +936,8 @@ class IndexController extends Controller {
             'totalQty' => $cart->totalQty,
             'totalPrice' => $cart->totalPrice,
             'rec' => $cart->rec,
-            'pickup_time' => $cart->pickup_time
+            'pickup_time' => $cart->pickup_time,
+            'pickup_date' => $cart->pickup_date,
         ];
 
         if($this->checkCommonDiscount())

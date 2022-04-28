@@ -978,10 +978,10 @@
 
                         $("#pickUp").modal('show');
                         $( "#saveTime" ).click(function() {
+                            pickup_date = document.getElementById("pickUpDate").value;
                             pickup_time = document.getElementById("pickUpTime").value;
                             $("#pickUp").modal('hide');
                             selecVal='Collect';
-
                             var item_id=selecVal;
                             var addtoCartURL="{{url('order-item/add-to-cart')}}";
                             //------------------------Ajax POS Start-------------------------//
@@ -991,7 +991,7 @@
                                 'global': false,
                                 'dataType': 'json',
                                 'url': addtoCartURL,
-                                'data': {'rec':item_id, 'pickup_time':pickup_time, '_token':"{{csrf_token()}}"},
+                                'data': {'rec':item_id, 'pickup_time':pickup_time, 'pickup_date':pickup_date, '_token':"{{csrf_token()}}"},
                                 'success': function (data) {
                                     loadCart(data);
                                     $("#orderModal").modal('hide');

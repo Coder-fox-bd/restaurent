@@ -3601,7 +3601,7 @@ class ProductItemController extends Controller
         {
             $oldCart = Session::has('cart') ? Session::get('cart') : null;
             $cart = new Cart($oldCart);
-            $cart->addRec($request->rec, $request->pickup_time);
+            $cart->addRec($request->rec, $request->pickup_time, $request->pickup_date);
         }
         elseif(isset($request->snd_item_id))
         {

@@ -115,18 +115,17 @@ $Seo=$objSTD->Seo();
 	                                </li>
 	                                
 	                                <li>
-										{{-- <div class="custom-control custom-radio">
-											<input type="radio" checked="checked" name="timeopt" onclick="defineTimeinDelnCol()" id="timeopt_1" value="asap">
-											<label class="custom-control-label" for="timeopt_1">ASAP (As soon as possible)</label>
+										<div class="d-flex justify-content-between">
+											<label class="cell-5 btn btn-success" id="tm1">
+												<input style="position: absolute; margin-top:8px; margin-left: -17px; " class="radio" type="radio" name="timeopt" onclick="defineTimeinDelnCol()" id="timeopt_1" value="asap" {{ !$pickup_time ? 'checked' : ''}}> 
+												ASAP (As soon as possible)
+											</label>
+											<label class="cell-5 btn btn-success" style=" text-transform: capitalize; padding-left: 25px;" id="tm2">
+												<input style="position: absolute; margin-top:8px; margin-left: -48px;" class="radio" type="radio" name="timeopt" onclick="defineTimeinDelnCol()" id="timeopt_0" value="chooseTime" {{ $pickup_time ? 'checked' : ''}}> 
+												<span>Choose Your Time</span>
+											</label>
 										</div>
-										<div class="custom-control custom-radio">
-											<input type="radio" name="timeopt" onclick="defineTimeinDelnCol()" id="timeopt_0" value="chooseTime">
-											<label class="custom-control-label" for="timeopt_0">Choose Your Time</label>
-										</div> --}}
-	                                	<label style="font-size: 16px; color:red; padding: 5px; cursor: pointer;"><input class="radio" type="radio" name="timeopt" onclick="defineTimeinDelnCol()" id="timeopt_1" value="asap" {{ !$pickup_time ? 'checked' : ''}}> ASAP (As soon as possible)</label>
-	                                	<label style="font-size: 16px; color:red; padding: 5px; cursor: pointer;"><input class="radio" type="radio" name="timeopt" onclick="defineTimeinDelnCol()" id="timeopt_0" value="chooseTime" {{ $pickup_time ? 'checked' : ''}}> Choose Your Time</label>
-	                                	
-
+										<br>
 	                                	<div style="display: none;" id="chooseTime">
 		                                    <label>Minimum time for 
 		                                    @if($rec=="Delivery")
@@ -137,9 +136,9 @@ $Seo=$objSTD->Seo();
 		                                    . It might takes more time on Friday & Saturday Nights </label>
 		                                    <label>
 		                                    	<i class="fa fa-calendar" aria-hidden="true"></i> 
-		                                    	<input type="text" id="datepicker" value="{{date('D d M Y')}}" name="booking_date" size="12" style="display: inline; width: auto; float: none;"> 
+		                                    	<input type="text" class="form-control" id="datepicker" value="{{ $pickup_date ? $pickup_date : date('D d M Y') }}" name="booking_date" size="12" style="display: inline; width: auto; float: none;"> 
 		                                    	<i class="fa fa-clock-o" aria-hidden="true" style="margin-left: 20px;"></i> 
-		                                    	<select id="booking_time" name="booking_time" style="display: inline; width: auto; float: none;">
+		                                    	<select id="booking_time" class="form-control" name="booking_time" style="display: inline; width: auto; float: none;">
 		                                    		<option value="00:00">Select Time</option>
 		                                    		<?php
 		                                    	    $start=strtotime('00:00');
@@ -149,7 +148,7 @@ $Seo=$objSTD->Seo();
 												    {
 												     	echo date('g:i A',$i).'<br>';
 												     	?>
-												     	<option value="{{date('g:i A',$i)}}">{{date('g:i A',$i)}}</option>
+												     	<option value="{{date('g:i A',$i)}}" {{ $pickup_time == date('g:i A',$i) ? 'selected' : ''}}>{{date('g:i A',$i)}}</option>
 												     	<?php
 												    }
 												    ?>
@@ -159,7 +158,8 @@ $Seo=$objSTD->Seo();
 	                                </li>
 
 	                                <li>
-	                                	<hr />
+	                                	{{-- <hr /> --}}
+										<br>
 	                                    <h3 style="color: #777; margin-top: 30px;">Addition Information</h3>
 	                                </li>
 
@@ -167,10 +167,10 @@ $Seo=$objSTD->Seo();
 
                                         <label><h4><strong>(If you don't find your desired dishes in the menu, you can mention it here. We will be delighted to cook it for you. Mention any information/query you may have)</strong></h4></label>
                                         
-                                     </li>   
-	                                    <label>
-	                                    	<textarea id="booking_note" name="booking_note" style="display: inline;  float: none; height: 60px; "></textarea>
-	                                    </label>
+                                     </li>
+										<div class="form-group">
+											<textarea class="form-control" id="booking_note" name="booking_note" rows="3"></textarea>
+										</div>  
 	                                </li>
 
 	                                <li>
@@ -206,8 +206,16 @@ $Seo=$objSTD->Seo();
 		function defineTimeinDelnCol(){
 			$("#chooseTime").hide();
 			var delncolTime=0;
-			if($('#timeopt_0').is(':checked')) { delncolTime=1; }
-			else if($('#timeopt_1').is(':checked')) { delncolTime=2; }
+			if($('#timeopt_0').is(':checked')) { 
+				delncolTime=1;
+				document.getElementById("tm1").classList.remove("active");
+				document.getElementById("tm2").classList.add("active");
+			}
+			else if($('#timeopt_1').is(':checked')) { 
+				delncolTime=2;
+				document.getElementById("tm2").classList.remove("active");
+				document.getElementById("tm1").classList.add("active");
+			}
 
 			if(delncolTime==1){ $("#chooseTime").show(); }
 			else if(delncolTime==0){ $("#chooseTime").hide(); }
@@ -215,8 +223,16 @@ $Seo=$objSTD->Seo();
 
 		$(document).ready(function(){
 			var delncolTime=0;
-			if($('#timeopt_0').is(':checked')) { delncolTime=1; }
-			else if($('#timeopt_1').is(':checked')) { delncolTime=2; }
+			if($('#timeopt_0').is(':checked')) { 
+				delncolTime=1;
+				document.getElementById("tm1").classList.remove("active");
+				document.getElementById("tm2").classList.add("active");
+			}
+			else if($('#timeopt_1').is(':checked')) { 
+				delncolTime=2;
+				document.getElementById("tm2").classList.remove("active");
+				document.getElementById("tm1").classList.add("active");
+			}
 
 			if(delncolTime==1){ $("#chooseTime").show(); }
 			else if(delncolTime==0){ $("#chooseTime").hide(); }
@@ -381,8 +397,8 @@ $Seo=$objSTD->Seo();
                     field: document.getElementById('datepicker'),
                     firstDay: 1,
                     minDate: new Date(),
-                    maxDate: new Date(2020, 12, 31),
-                    yearRange: [2000, 2020]
+					maxDate: new Date(2040, 12, 31),
+                    yearRange: [2020, 2040]
                 });
 
     </script>
