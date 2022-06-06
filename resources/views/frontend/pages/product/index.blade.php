@@ -126,6 +126,116 @@ $Seo=$objSTD->Seo();
             </div>
         </div>
     </div>
+
+    <div id="searchPost" class="modal fade" style="z-index: 9999;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <h5> Search PostCode</h5>
+                    <input type="text" class="form-control" placeholder="Search PostCode">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Search</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- <button data-toggle="modal" data-target="#itemModalCenter">ashdfsdf</button>
+    <div class="modal fade" id="itemModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-modal="true" style="z-index: 9999;">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">MIXED GRILL PLATTER(ONE)(meat)</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body bg-white container">
+                <form name="add_to_cart_form" id="add_to_cart_form">
+                    <input type="hidden" name="item_id" id="item_id" value="27">
+                    <input type="hidden" name="discount" id="discount" value="0">
+                    <input type="hidden" name="has_meal_deal" id="has_meal_deal" value="0">
+                    <div class="row">
+                        <h4 class="col-md-12">Karahi</h4><br>
+                        <p class="col-md-12">Karahi</p>
+                    </div>
+                       
+                    <div class="row price">
+                        <h4 class="col-md-12 heading">Price</h4>
+                        <hr>
+                        
+                        <div class="col-md-12 row">
+                        <input type="hidden" name="variation_id" id="variation_id" value="0">
+                            <div class="col-md-3">
+                                <div class="custom-control custom-radio mb-3">
+                                    <input type="radio" data-id="0" class="custom-control-input popupPriceClass btnClass" value="8.9" price="8.9" name="item_price" id="customCheckDefault" checked="">
+                                    <label class="custom-control-label text-sm" for="customCheckDefault">
+                                        CHICKEN £8.90 
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="custom-control custom-radio mb-3">
+                                    <input type="radio" class="custom-control-input popupPriceClass btnClass" value="9.9" data-id="2" name="item_price" price="9.9" id="customCheck1">
+                                    <label class="custom-control-label text-sm" for="customCheck1">LAMB 
+                                    £ 9.90 
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="custom-control custom-radio mb-3">
+                                    <input type="radio" class="custom-control-input popupPriceClass btnClass" value="8.9" data-id="3" name="item_price" price="8.9" id="customCheck2">
+                                    <label class="custom-control-label text-sm" for="customCheck2">VEGETABLE 
+                                    £ 8.90 
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                       
+                                               
+                                               
+                    <div class="row quantity">
+                        <h4 class="col-md-12 heading">Quantity</h4>
+                        <hr>
+                        <div class="col-md-12 row">
+                            <div class="product__details__quantity col-md-3">
+                                <div class="quantity">
+                                    <div class="pro-qty product_qty_hgt">
+                                        <span class="product_count_item number-qty-decr  qtybtn popqnty-dec" type="main_item" id="number_qty_decr">-</span>
+                                            <input class="product_count_item number-qty main_item_qty popqnty-num" id="main_item_qty" type="text" value="1" min="1" max="10" name="main_item_qty">
+                                        <span class="product_count_item number-qty-incrs  qtybtn popqnty-inc" type="main_item" id="number_qty_incrs">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                       
+                       
+                       
+                    <div class="row special_inst">
+                        <h4 class="col-md-12 heading">Special Instructions</h4>
+                        <hr>
+                        <div class="col-md-12 row">
+                            <textarea class="form-control special_inst" name="special_inst" id="special_inst" placeholder="Special Instructions"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <span class="priceOfItem">£6.90</span>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary add_cart" data-item-id="4">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+      </div> --}}
 @endsection	
 
 
@@ -275,6 +385,8 @@ $Seo=$objSTD->Seo();
                             }
                             else if(document.getElementById('record_1').checked==true)
                             {
+                                $("#searchPost").modal('show');
+                                $("#orderModal").modal('hide');
                                 selecVal='Delivery';
                             }
                             if(selecVal!='')
@@ -302,5 +414,37 @@ $Seo=$objSTD->Seo();
 
             });
         });
+    </script>
+
+    <script>
+        function incr(id) {
+            var quantity = $(`#main_item_qty_${id}`);
+            var price = $(`#product_price_${id}`).val();
+            var a = quantity.val();
+            
+            a++;
+            quantity.val(a);
+            $(`.priceOfItem_${id}`).html((price*a).toFixed(2));
+            $(`#add_cart_btn_${id}`).attr("data-quantity", a);
+        }
+        function decr(id) {
+            var quantity = $(`#main_item_qty_${id}`);
+            var price = $(`#product_price_${id}`).val();
+            var b = quantity.val();
+            if (b >= 1) {
+                b--;
+                quantity.val(b);
+            }
+            else {
+                $(`#number_qty_decr_${id}`).prop("disabled", true);
+            }
+            $(`.priceOfItem_${id}`).html((price*b).toFixed(2));
+            $(`#add_cart_btn_${id}`).attr("data-quantity", b);
+        }
+        function subcat(id, sub_id, price){
+            $(`.priceOfItem${id}`).html((price).toFixed(2));
+            $(`.priceOfItem${id}`).attr("data-price", (price).toFixed(2));
+            $(`#add_cart_btn_${id}`).attr("data-extra-id", sub_id);
+        }
     </script>
 @endsection

@@ -1004,7 +1004,8 @@
                     else if(document.getElementById('rec_1').checked==true)
 
                     {
-
+                        $("#searchPost").modal('show');
+                        $("#orderModal").modal('hide');
                         selecVal='Delivery';
 
                     }
@@ -1167,8 +1168,11 @@
 
                     var item_id=$(this).attr('data-id');
 
+                    var item_qty=$(this).attr('data-quantity');
+
                     var addtoCartURL="{{url('order-item/add-to-cart')}}";
 
+                    $(`#itemModalCenter${item_id}`).modal('hide');
                     //------------------------Ajax POS Start-------------------------//
 
                     $.ajax({
@@ -1183,7 +1187,7 @@
 
                         'url': addtoCartURL,
 
-                        'data': {'item_id':item_id,'item_sub_cat_name':item_sub_cat_name,'_token':"{{csrf_token()}}"},
+                        'data': {'item_id':item_id,'item_sub_cat_name':item_sub_cat_name,'item_qty':item_qty, '_token':"{{csrf_token()}}"},
 
                         'success': function (data) {
                             toastr.success('Item added to cart');
@@ -1267,6 +1271,10 @@
 
                     var snd_item_id=$(this).attr('data-extra-id');
 
+                    var item_qty=$(this).attr('data-quantity');
+
+                    $(`#itemModalCenter${item_id}`).modal('hide');
+
                     var addtoCartURL="{{url('order-item/add-to-cart')}}";
 
                     //------------------------Ajax POS Start-------------------------//
@@ -1292,6 +1300,8 @@
                             'item_sub_cat_name':item_sub_cat_name,
 
                             'snd_item_id':snd_item_id,
+
+                            'item_qty':item_qty,
 
                             '_token':"{{csrf_token()}}"
 

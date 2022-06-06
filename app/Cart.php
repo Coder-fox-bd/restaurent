@@ -40,31 +40,31 @@ class Cart {
         }
     }
 
-    public function add($item, $id) {
-        $storeditem = ['qty' => 0, 'price' => $item->price, 'item' => $item];
+    public function add($item, $id, $item_qty) {
+        $storeditem = ['qty' => $item_qty, 'price' => $item->price, 'item' => $item];
         if ($this->items) {
             if (array_key_exists($id, $this->items)) {
                 $storeditem = $this->items[$id];
             }
         }
-        $storeditem['qty'] ++;
+        $storeditem['qty'] = $item_qty;
         $storeditem['price'] = $item->price * $storeditem['qty'];
         $this->items[$id] = $storeditem;
-        $this->totalQty++;
+        $this->totalQty = $item_qty;
         $this->totalPrice += $item->price;
     }
 
-    public function addSingleSubcat($item, $id,$sub_cat_name) {
-        $storeditem = ['qty' => 0,'sub_cat_name'=>$sub_cat_name, 'price' => $item->price, 'item' => $item];
+    public function addSingleSubcat($item, $id, $sub_cat_name, $item_qty) {
+        $storeditem = ['qty' => $item_qty,'sub_cat_name'=>$sub_cat_name, 'price' => $item->price, 'item' => $item];
         if ($this->items) {
             if (array_key_exists($id, $this->items)) {
                 $storeditem = $this->items[$id];
             }
         }
-        $storeditem['qty'] ++;
+        $storeditem['qty'] = $item_qty;
         $storeditem['price'] = $item->price * $storeditem['qty'];
         $this->items[$id] = $storeditem;
-        $this->totalQty++;
+        $this->totalQty = $item_qty;
         $this->totalPrice += $item->price;
     }
 
@@ -106,9 +106,9 @@ class Cart {
                               ];
     }
 
-    public function addSnd($item, $id,$snd_item,$snd_id) {
-        $storeditem = ['qty' => 0, 'price' => $snd_item->price, 'item' => $item, 'snd_item' =>array()];
-        $storeSNDItem=['qty' => 0, 'price' => $snd_item->price, 'item' => $snd_item];
+    public function addSnd($item, $id,$snd_item,$snd_id, $item_qty) {
+        $storeditem = ['qty' => $item_qty, 'price' => $snd_item->price, 'item' => $item, 'snd_item' =>array()];
+        $storeSNDItem=['qty' => $item_qty, 'price' => $snd_item->price, 'item' => $snd_item];
 
         if ($this->items) {
             if (array_key_exists($id, $this->items)) {
@@ -123,10 +123,10 @@ class Cart {
             }
         }
 
-        $storeSNDItem['qty']++;
+        $storeSNDItem['qty'] = $item_qty;
         $storeSNDItem['price'] = $snd_item->price * $storeSNDItem['qty'];
         
-        $storeditem['qty']++;
+        $storeditem['qty'] = $item_qty;
         if($storeditem['qty']>1)
         {
             $storeditem['price']+=$snd_item->price;
@@ -135,13 +135,13 @@ class Cart {
         $storeditem['snd_item'][$snd_id]=$storeSNDItem;
 
         $this->items[$id] = $storeditem;
-        $this->totalQty++;
+        $this->totalQty = $item_qty;
         $this->totalPrice += $snd_item->price;
     }
 
-    public function addSndSubCat($item, $id,$snd_item,$snd_id,$sub_cat_name) {
-        $storeditem = ['qty' => 0, 'price' => $snd_item->price,'sub_cat_name'=>$sub_cat_name, 'item' => $item, 'snd_item' =>array()];
-        $storeSNDItem=['qty' => 0, 'price' => $snd_item->price,'sub_cat_name'=>$sub_cat_name, 'item' => $snd_item];
+    public function addSndSubCat($item, $id,$snd_item,$snd_id,$sub_cat_name, $item_qty) {
+        $storeditem = ['qty' => $item_qty, 'price' => $snd_item->price,'sub_cat_name'=>$sub_cat_name, 'item' => $item, 'snd_item' =>array()];
+        $storeSNDItem=['qty' => $item_qty, 'price' => $snd_item->price,'sub_cat_name'=>$sub_cat_name, 'item' => $snd_item];
 
         if ($this->items) {
             if (array_key_exists($id, $this->items)) {
@@ -156,10 +156,10 @@ class Cart {
             }
         }
 
-        $storeSNDItem['qty']++;
+        $storeSNDItem['qty'] = $item_qty;
         $storeSNDItem['price'] = $snd_item->price * $storeSNDItem['qty'];
         
-        $storeditem['qty']++;
+        $storeditem['qty'] = $item_qty;
         if($storeditem['qty']>1)
         {
             $storeditem['price']+=$snd_item->price;
@@ -168,7 +168,7 @@ class Cart {
         $storeditem['snd_item'][$snd_id]=$storeSNDItem;
 
         $this->items[$id] = $storeditem;
-        $this->totalQty++;
+        $this->totalQty = $item_qty;
         $this->totalPrice += $snd_item->price;
     }
 

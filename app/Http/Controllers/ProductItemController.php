@@ -3611,11 +3611,11 @@ class ProductItemController extends Controller
             $cart = new Cart($oldCart);
             if(isset($request->item_sub_cat_name))
             {
-                $cart->addSndSubCat($product, $product->id,$sndItm,$sndItm->id,$request->item_sub_cat_name);
+                $cart->addSndSubCat($product, $product->id,$sndItm,$sndItm->id,$request->item_sub_cat_name,$request->item_qty);
             }
             else
             {
-                $cart->addSnd($product, $product->id,$sndItm,$sndItm->id);
+                $cart->addSnd($product, $product->id,$sndItm,$sndItm->id,$request->item_qty);
             }
             
             
@@ -3674,11 +3674,11 @@ class ProductItemController extends Controller
             $cart = new Cart($oldCart);
             if(isset($request->item_sub_cat_name))
             {
-                $cart->addSingleSubcat($product, $product->id,$request->item_sub_cat_name);
+                $cart->addSingleSubcat($product, $product->id,$request->item_sub_cat_name,$request->item_qty);
             }
             else
             {
-                $cart->add($product, $product->id);
+                $cart->add($product, $product->id, $request->item_qty);
             }
             
         }

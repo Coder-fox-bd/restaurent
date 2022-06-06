@@ -59,16 +59,41 @@
                     {
                         padding: 0 10px;
                     }
+                    .btn-proceed {
+                        font-size: 14px;
+                        color: #fff;
+                        text-align: center;
+                        border-radius: 6px;
+                        text-transform: uppercase;
+                        font-weight: 300;
+                    }
+                    .btn-proceed {
+                        background: #0082ea;
+                        border: none;
+                        border-radius: 0px !important;
+                        padding: 16px;
+                        font-size: 16px !important;
+                        font-weight: bold !important;
+                        background: #fe2919;
+                        background: #207dff;
+                        background: -moz-linear-gradient(45deg, #207dff 0%, #00bd55 100%);
+                        background: -webkit-gradient(left bottom, right top, color-stop(0%, #207dff), color-stop(100%, #00bd55));
+                        background: -webkit-linear-gradient( 45deg , #9c27b0 0%, #4caf50 100%);
+                        background: -o-linear-gradient(45deg, #207dff 0%, #00bd55 100%);
+                        background: -ms-linear-gradient(45deg, #207dff 0%, #00bd55 100%);
+                        background: linear-gradient( 45deg , #9c27b0 0%, #4caf50 100%);
+                        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#207dff', endColorstr='#00bd55', GradientType=1 );
+                    }
                 </style>
 
-                <div class="col col-12 col-lg-5 px-3 p-lg-0 mb-3">
+                <div class="col col-12 col-lg-4 px-3 p-lg-0 mb-3">
                     <div style="position: sticky; top: 10px;">
                         <div name="cart-basket-navigate">
                             <section id="cart-Basket" class="basket-order-view my-3 p-2 p-lg-3 link-background">
                                 <div class="row">
                                     <div class="inner center col-md-12 text-center mb-15 border-bottom">
-                                        <a href="javascript:;" class="top10 green-color change-address block text-center">
-                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Product Cart</a>
+                                        <a href="javascript:;" class="top10 green-color change-address block text-center" data-toggle="modal" data-target="#searchPost">
+                                            <i class="fa fa-location-arrow" aria-hidden="true"></i> Search Postcode</a>
                                         
                                         <p class="deliverd has-success" style="color: green;font-weight: bold;"></p>
                                         <p class="not-deliverd has-danger"></p>
@@ -128,8 +153,15 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="d-flex justify-content-between">
-                                                    <div><h3><span>Your Basket</span></h3></div>
-                                                    <div class="cart_item mini_shopping-cart-quantity text-center" style="display: inline; border-radius: 5px;">0</div>
+                                                    <div>
+                                                        <h3>
+                                                            <span>Your Basket</span>
+                                                            {{-- <span class="cart_item mini_shopping-cart-quantity text-center" style="display: inline; border-radius: 5px; margin-left: 3px;">0</span> --}}
+                                                        </h3>
+                                                    </div>
+                                                    <h3 class="empty-cart" style="display: inline; color:red; cursor: pointer;">
+                                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                    </h3>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -173,13 +205,14 @@
                                 <!-- Button trigger modal -->
                                 @if ($orderINfoText->isoffline==0)
                                 <div class="checkout text-center">
-                                    <a class="btn btn-success empty-cart" href="javascript:void(0);">
+                                    {{-- <a class="btn btn-success empty-cart" href="javascript:void(0);">
                                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                                         Empty Cart</a>
                                     <a class="btn btn-success checkout-page" href="javascript:void(0);">
                                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                         Checkout 
-                                    </a>
+                                    </a> --}}
+                                    <button type="button" class="btn btn-proceed btn-lg btn-block checkout-page"><span>Checkout</span></button>
                                 </div>
                                 @endif
                                 <a class="allergy modal-trigger online-smart-way fx animated fadeInUp" data-animate="fadeInUp" data-modal="alergy_alert" data-animation-delay="600" style="animation-delay: 600ms;">

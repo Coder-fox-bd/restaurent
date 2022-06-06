@@ -1,5 +1,5 @@
 
-{{-- <div class="col col-lg-3 col-6 d-none d-lg-block mb-3 ftco-faqs img">
+<div class="col col-lg-3 col-6 d-none d-lg-block mb-3 ftco-faqs img">
     <div style="position: sticky; top: 10px;">
     <section id="menu-category" class=" p-lg-3 my-3 link-background" data-spy="affix">
         <h3>ITEMS</h3>
@@ -14,8 +14,8 @@
         </ul>
     </section>
     </div>
-</div> --}}
-<div class="col-7 col-12 col-lg-6 search-takeaways pl-lg-0 mb-3">
+</div>
+<div class="col col-12 col-lg-5 search-takeaways pl-lg-0 mb-3">
     <div class="accordion">
         <div class="card">
             <?php 
@@ -110,9 +110,98 @@
                                                             <div style="height: 0px; width: 0px; overflow: hidden;">
                                                                 <img src="{{url('front-theme/images/cart-icon.png')}}">
                                                             </div>
-                                                            <a href="javascript:void(0);" data-id="{{$row['id']}}" class="proButton add-cart"><i class="fa fa-plus"></i></a>
+                                                            <a href="javascript:void(0);" data-id="{{$row['id']}}" class="proButton" data-toggle="modal" data-target="#itemModalCenter{{ $row['id'] }}"><i class="fa fa-plus"></i></a>
                                                         </p>
                                                         @endif
+
+
+
+                                                        @php
+                                                        $modal.= '<div class="modal fade" id="itemModalCenter'.$row['id'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-modal="true" style="z-index: 9999;">
+                                                                <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                    <h5 class="modal-title">'.$row['name'].'</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">×</span>
+                                                                    </button>
+                                                                    </div>
+                                                                    <div class="modal-body bg-white container">
+                                                                        <form name="add_to_cart_form" id="add_to_cart_form">
+                                                                            <div class="row">
+                                                                                <h4 class="col-md-12">'.$row['name'].'</h4><br>
+                                                                                <p class="col-md-12">'.strip_tags(html_entity_decode($row['description'])).'</p>
+                                                                            </div>
+                                                                            
+                                                                            <div class="row price">
+                                                                                <h4 class="col-md-12 heading">Price</h4>
+                                                                                <hr>';
+                                                                                $price = 0;
+                                                                                if($interface==3){
+                                                                                        $min_prince_row=0; 
+                                                                                        foreach($row['modal'] as $key=>$mod){
+                                                                                            if($min_prince_row>0)
+                                                                                            {
+                                                                                                if($min_prince_row>$mod['price'])
+                                                                                                {
+                                                                                                    $min_prince_row=$mod['price'];
+                                                                                                }
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                $min_prince_row=$mod['price'];
+                                                                                            }
+                                                                                        };
+                                                                                        $price = $min_prince_row;                            
+                                                                                    }else{
+                                                                                        if(!empty($row['price'])){
+                                                                                            $price = $row['price'];
+                                                                                        }
+                                                                                    }
+                                                                                    $modal.='<div class="custom-control custom-radio mb-3 ml-3">';
+                                                                                        $modal.='<input class="custom-control-input" type="radio" name="exampleRadios'.$row['id'].'" id="product_price_'.$row['id'].'" value="'.$price.'" checked>
+                                                                                                <label class="custom-control-label" for="product_price_'.$row['id'].'">
+                                                                                                    '.$price.'
+                                                                                                </label>';
+                                                                                    $modal.='</div>';
+                                                                                $modal.='</div>
+                                                                                                   
+                                                                            <div class="row quantity">
+                                                                                <h4 class="col-md-12 heading">Quantity</h4>
+                                                                                <hr>
+                                                                                <div class="col-md-12 row">
+                                                                                    <div class="product__details__quantity col-md-3">
+                                                                                        <div class="quantity">
+                                                                                            <div class="pro-qty product_qty_hgt">
+                                                                                                <span class="product_count_item number-qty-decr  qtybtn popqnty-dec" id="number_qty_decr'.$row['id'].'" onclick="return decr('.$row['id'].')">-</span>
+                                                                                                    <input class="product_count_item number-qty main_item_qty popqnty-num" id="main_item_qty_'.$row['id'].'" type="text" value="1" min="1" max="10">
+                                                                                                <span class="product_count_item number-qty-incrs  qtybtn popqnty-inc" onclick="return incr('.$row['id'].')">+</span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            
+                                                                            
+                                                                            <div class="row special_inst">
+                                                                                <h4 class="col-md-12 heading">Special Instructions</h4>
+                                                                                <hr>
+                                                                                <div class="col-md-12 row">
+                                                                                    <textarea class="form-control special_inst" name="special_inst" id="special_inst" placeholder="Special Instructions"></textarea>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                    <span class="priceOfItem_'.$row['id'].'">'.$price.'</span>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-primary add-cart" id="add_cart_btn_'.$row['id'].'" data-id="'.$row['id'].'" data-quantity="">Add To Cart</button>
+                                                                    </div>
+                                                                </div>
+                                                                </div>
+                                                            </div>';
+                                                        @endphp
                                                     </div>
                                                 </td>
                                             </tr>
@@ -426,7 +515,7 @@
                                             </tr>
                                         @endif
                                         <?php 
-
+                            
                                         foreach ($cat['product_row'] as $key => $sc) 
                                         {
                                             ?>
@@ -435,7 +524,6 @@
                                                     <span class="proName">{{$sc['name']}}</span><br>
                                                     <i>{{strip_tags(html_entity_decode($sc['description']))}}</i>
                                                 </td>
-                                            </tr>
                                             <?php
                                             foreach ($sc['sub_product_row'] as $key => $row) 
                                             {
@@ -495,15 +583,193 @@
                                                             <div style="height: 0px; width: 0px; overflow: hidden;">
                                                                 <img src="{{url('front-theme/images/cart-icon.png')}}">
                                                             </div>
-                                                            <a href="javascript:void(0);" data-id="{{$row['id']}}"  data-sub-name="{{$sc['name']}}"  class="proButton add-cart"><i class="fa fa-plus"></i></a>
+                                                            <a href="javascript:void(0);" data-id="{{$row['id']}}"  data-sub-name="{{$sc['name']}}"  class="proButton" data-toggle="modal" data-target="#itemModalCenter{{ $sc['id'] }}"><i class="fa fa-plus"></i></a>
                                                         </p>
                                                         @endif
                                                     </div>
                                                 </td>
                                             </tr>
+
+
+                                            @php
+                                                $modal.= '<div class="modal fade" id="itemModalCenter'.$sc['id'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-modal="true" style="z-index: 9999;">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                            <h5 class="modal-title">'.$sc['name'].'</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                            </div>
+                                                            <div class="modal-body bg-white container">
+                                                                <form name="add_to_cart_form" id="add_to_cart_form">
+                                                                    <div class="row">
+                                                                        <h4 class="col-md-12">'.$sc['name'].'</h4><br>
+                                                                        <p class="col-md-12">'.strip_tags(html_entity_decode($sc['description'])).'</p>
+                                                                    </div>
+                                                                    
+                                                                    <div class="row price">
+                                                                        <h4 class="col-md-12 heading">Price</h4>
+                                                                        <hr>';
+                                                                        
+                                                                            $modal.='<div class="custom-control custom-radio mb-3 ml-3">';
+                                                                                $modal.='<input class="custom-control-input" type="radio" name="exampleRadios'.$sc['id'].'" id="product_price" value="option" checked>
+                                                                                        <label class="custom-control-label" for="product_price">';                                                                                            
+                                                                                            if($interface==3){
+                                                                                                $min_prince_row=0; 
+                                                                                                foreach($row['modal'] as $key=>$mod){
+                                                                                                    if($min_prince_row>0)
+                                                                                                    {
+                                                                                                        if($min_prince_row>$mod['price'])
+                                                                                                        {
+                                                                                                            $min_prince_row=$mod['price'];
+                                                                                                        }
+                                                                                                    }
+                                                                                                    else
+                                                                                                    {
+                                                                                                        $min_prince_row=$mod['price'];
+                                                                                                    }
+                                                                                                };
+                                                                                                $modal.= '£'.$min_prince_row;
+                                                                                            }else{
+                                                                                                if(!empty($row['price'])){
+                                                                                                    $modal.= "£".$row['price'];
+                                                                                                }
+                                                                                            }
+                                                                                        $modal.='</label>';
+                                                                            $modal.='</div>';
+                                                                        $modal.='</div>
+                                                                                           
+                                                                    <div class="row quantity">
+                                                                        <h4 class="col-md-12 heading">Quantity</h4>
+                                                                        <hr>
+                                                                        <div class="col-md-12 row">
+                                                                            <div class="product__details__quantity col-md-3">
+                                                                                <div class="quantity">
+                                                                                    <div class="pro-qty product_qty_hgt">
+                                                                                        <span class="product_count_item number-qty-decr  qtybtn popqnty-dec" type="main_item" id="number_qty_decr">-</span>
+                                                                                            <input class="product_count_item number-qty main_item_qty popqnty-num" id="main_item_qty" type="text" value="1" min="1" max="10" name="main_item_qty">
+                                                                                        <span class="product_count_item number-qty-incrs  qtybtn popqnty-inc" type="main_item" id="number_qty_incrs">+</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    
+                                                                    
+                                                                    <div class="row special_inst">
+                                                                        <h4 class="col-md-12 heading">Special Instructions</h4>
+                                                                        <hr>
+                                                                        <div class="col-md-12 row">
+                                                                            <textarea class="form-control special_inst" name="special_inst" id="special_inst" placeholder="Special Instructions"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                            <span class="priceOfItem">£6.90</span>
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary add_cart" data-item-id="4">Add To Cart</button>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>';
+                                                @endphp
                                             @endif
                                             @if($interface==2)
-                                                @foreach($row['ProductOneSubLevel'] as $dt)
+                                                <td align="right">
+
+                                                    <div class="prosec">
+                                                        <p class="proPrice">
+                                                            
+                                                            <div style="height: 0px; width: 0px; overflow: hidden;">
+                                                                <img src="{{url('front-theme/images/cart-icon.png')}}">
+                                                            </div>
+                                                            <a href="javascript:void(0);" data-id="{{$row['id']}}"  class="proButton" data-toggle="modal" data-target="#itemModalCenter{{ $sc['id'] }}"><i class="fa fa-plus"></i></a>
+                                                        </p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <?php
+                                            $modal.= '<div class="modal fade" id="itemModalCenter'.$sc['id'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-modal="true" style="z-index: 9999;">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                            <h5 class="modal-title">'.$sc['name'].'</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                            </div>
+                                                            <div class="modal-body bg-white container">
+                                                                <form name="add_to_cart_form" id="add_to_cart_form">
+                                                                    <div class="row">
+                                                                        <h4 class="col-md-12">'.$sc['name'].'</h4><br>
+                                                                        <p class="col-md-12">'.strip_tags(html_entity_decode($sc['description'])).'</p>
+                                                                    </div>
+                                                                    
+                                                                    <div class="row price">
+                                                                        <h4 class="col-md-12 heading">Price</h4>
+                                                                        <hr>';
+                                                                        $price = 0;
+                                                                        $dt_id = 0;
+                                                                        foreach($row['ProductOneSubLevel'] as $dtkey => $dt){
+                                                                            $modal.='<div class="custom-control custom-radio mb-3 ml-3">';
+                                                                            if ($dtkey == 0) {
+                                                                                $price = $dt['price'];
+                                                                                $dt_id = $dt['id'];
+                                                                                $modal.='<input class="custom-control-input" type="radio" name="product_price_'.$row['id'].'" id="product_price_'.$dtkey.'" value="'.$dt['price'].'" onclick="return subcat('.$row['id'].', '.$dt['id'].', '.$dt['price'].')" checked>
+                                                                                        <label class="custom-control-label" for="product_price_'.$dtkey.'">
+                                                                                            '.$dt['name'].' £'.$dt['price'].'
+                                                                                        </label>';
+                                                                            }else{
+                                                                                $modal.='<input class="custom-control-input" type="radio" name="product_price_'.$row['id'].'" id="product_price_'.$dtkey.'" value="'.$dt['price'].'" onclick="return subcat('.$row['id'].', '.$dt['id'].', '.$dt['price'].')">
+                                                                                        <label class="custom-control-label" for="product_price_'.$dtkey.'">
+                                                                                            '.$dt['name'].' £'.$dt['price'].'
+                                                                                        </label>';
+                                                                            }
+                                                                            $modal.='</div>';
+                                                                        }
+                                                                        $modal.='</div>
+                                                                                           
+                                                                    <div class="row quantity">
+                                                                        <h4 class="col-md-12 heading">Quantity</h4>
+                                                                        <hr>
+                                                                        <div class="col-md-12 row">
+                                                                            <div class="product__details__quantity col-md-3">
+                                                                                <div class="quantity">
+                                                                                    <div class="pro-qty product_qty_hgt">
+                                                                                        <span class="product_count_item number-qty-decr  qtybtn popqnty-dec" id="number_qty_decr'.$row['id'].'" onclick="return decr('.$row['id'].')">-</span>
+                                                                                            <input class="product_count_item number-qty main_item_qty popqnty-num" id="main_item_qty_'.$row['id'].'" type="text" value="1" min="1" max="10">
+                                                                                        <span class="product_count_item number-qty-incrs  qtybtn popqnty-inc" onclick="return incr('.$row['id'].')">+</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    
+                                                                    
+                                                                    <div class="row special_inst">
+                                                                        <h4 class="col-md-12 heading">Special Instructions</h4>
+                                                                        <hr>
+                                                                        <div class="col-md-12 row">
+                                                                            <textarea class="form-control special_inst" name="special_inst" id="special_inst" placeholder="Special Instructions"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                            <span class="priceOfItem'.$row['id'].'" data-price="'.$price.'">'.$price.'</span>
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary add-subcat-cart" id="add_cart_btn_'.$row['id'].'" data-extra-id="'.$dt_id.'"  data-sub-name="'.$sc['name'].'"  data-id="'.$row['id'].'" data-quantity="">Add To Cart</button>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>';
+                                            ?>
+                                                {{-- @foreach($row['ProductOneSubLevel'] as $dt)
                                                 <tr>
                                                     <td width="60%" align="left" valign="top">
                                                         <span class="proName" style="font-weight: 100 !important;">{{$dt['name']}}</span>
@@ -521,7 +787,7 @@
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                @endforeach
+                                                @endforeach --}}
                                             @endif
                                         <?php
                                             if($interface==5)
