@@ -1273,7 +1273,9 @@
 
                     var item_qty=$(this).attr('data-quantity');
 
-                    $(`#itemModalCenter${item_id}`).modal('hide');
+                    var sub_id=$(this).attr('data-sub-id');
+
+                    $(`#itemModalCenter${sub_id}`).modal('hide');
 
                     var addtoCartURL="{{url('order-item/add-to-cart')}}";
 

@@ -419,7 +419,9 @@ $Seo=$objSTD->Seo();
     <script>
         function incr(id) {
             var quantity = $(`#main_item_qty_${id}`);
-            var price = $(`#product_price_${id}`).val();
+
+            var price = $(`#product_price_${id}:checked`).val();
+
             var a = quantity.val();
             
             a++;
@@ -429,7 +431,9 @@ $Seo=$objSTD->Seo();
         }
         function decr(id) {
             var quantity = $(`#main_item_qty_${id}`);
-            var price = $(`#product_price_${id}`).val();
+
+            var price = $(`#product_price_${id}:checked`).val();
+            
             var b = quantity.val();
             if (b >= 1) {
                 b--;
@@ -442,8 +446,9 @@ $Seo=$objSTD->Seo();
             $(`#add_cart_btn_${id}`).attr("data-quantity", b);
         }
         function subcat(id, sub_id, price){
-            $(`.priceOfItem${id}`).html((price).toFixed(2));
-            $(`.priceOfItem${id}`).attr("data-price", (price).toFixed(2));
+            $(`#main_item_qty_${id}`).val(1);
+            $(`.priceOfItem_${id}`).html((price).toFixed(2));
+            $(`.priceOfItem_${id}`).attr("data-price", (price).toFixed(2));
             $(`#add_cart_btn_${id}`).attr("data-extra-id", sub_id);
         }
     </script>
