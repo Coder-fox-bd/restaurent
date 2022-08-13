@@ -1004,7 +1004,7 @@
                     else if(document.getElementById('rec_1').checked==true)
 
                     {
-                        $("#searchPost").modal('show');
+                        // $("#searchPost").modal('show');
                         $("#orderModal").modal('hide');
                         selecVal='Delivery';
 
@@ -1236,6 +1236,8 @@
                             'item_id':item_id,
 
                             'snd_item_id':snd_item_id,
+
+                            'item_qty':1,
 
                             '_token':"{{csrf_token()}}"
 

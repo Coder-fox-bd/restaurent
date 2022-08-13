@@ -84,6 +84,71 @@
                         background: linear-gradient( 45deg , #9c27b0 0%, #4caf50 100%);
                         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#207dff', endColorstr='#00bd55', GradientType=1 );
                     }
+
+                    .wrapper{
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: space-evenly;
+                    border-radius: 5px;
+                    }
+                    .wrapper .option{
+                    background: #fff;
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-evenly;
+                    margin: 0 10px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    padding: 0 10px;
+                    border: 2px solid lightgrey;
+                    transition: all 0.3s ease;
+                    }
+                    .wrapper .option .dot{
+                    height: 20px;
+                    width: 20px;
+                    background: #d9d9d9;
+                    border-radius: 50%;
+                    position: relative;
+                    }
+                    .wrapper .option .dot::before{
+                    position: absolute;
+                    content: "";
+                    top: 4px;
+                    left: 4px;
+                    width: 12px;
+                    height: 12px;
+                    background: #0069d9;
+                    border-radius: 50%;
+                    opacity: 0;
+                    transform: scale(1.5);
+                    transition: all 0.3s ease;
+                    }
+                    input[type="radio"]{
+                    display: none;
+                    }
+                    #rec_1:checked:checked ~ .rec_1,
+                    #rec_0:checked:checked ~ .rec_0{
+                    border-color: #0069d9;
+                    background: #0069d9;
+                    }
+                    #rec_1:checked:checked ~ .rec_1 .dot,
+                    #rec_0:checked:checked ~ .rec_0 .dot{
+                    background: #fff;
+                    }
+                    #rec_1:checked:checked ~ .rec_1 .dot::before,
+                    #rec_0:checked:checked ~ .rec_0 .dot::before{
+                    opacity: 1;
+                    transform: scale(1);
+                    }
+                    .wrapper .option span{
+                    color: #808080;
+                    }
+                    #rec_1:checked:checked ~ .rec_1 span,
+                    #rec_0:checked:checked ~ .rec_0 span{
+                    color: #fff;
+                    }
                 </style>
 
                 <div class="col col-12 col-lg-4 px-3 p-lg-0 mb-3">
@@ -92,9 +157,9 @@
                             <section id="cart-Basket" class="basket-order-view my-3 p-2 p-lg-3 link-background">
                                 <div class="row">
                                     <div class="inner center col-md-12 text-center mb-15 border-bottom">
-                                        <a href="javascript:;" class="top10 green-color change-address block text-center" data-toggle="modal" data-target="#searchPost">
+                                        {{-- <a href="javascript:;" class="top10 green-color change-address block text-center" data-toggle="modal" data-target="#searchPost">
                                             <i class="fa fa-location-arrow" aria-hidden="true"></i> Search Postcode</a>
-                                        
+                                         --}}
                                         <p class="deliverd has-success" style="color: green;font-weight: bold;"></p>
                                         <p class="not-deliverd has-danger"></p>
                                     </div>
@@ -107,14 +172,14 @@
                                     </div>
                                 @else
                                     <div class="text-center">
-                                        <div class="custom-control custom-radio custom-control-inline">
+                                        {{-- <div class="custom-control custom-radio custom-control-inline">
                                             <input type="radio" value="Delivery" name="rec" id="rec_1" class="custom-control-input">
                                             <label class="custom-control-label" for="rec_1">Delivery</label>
                                         </div>
                                         <div class="custom-control custom-radio custom-control-inline">
                                             <input type="radio" value="Collect" name="rec" id="rec_0" class="custom-control-input">
                                             <label class="custom-control-label" for="rec_0">Collection</label>
-                                        </div>
+                                        </div> --}}
                                         {{-- <label class="cell-5 btn btn-success">
                                             <input checked="checked" style="position: absolute; margin-top:8px; margin-left: -17px; " type="radio" value="Delivery" name="rec" id="rec_1"> 
                                             Delivery
@@ -123,6 +188,18 @@
                                             <input style="position: absolute; margin-top:8px; margin-left: -48px;" type="radio" value="Collect" name="rec" id="rec_0" checked="checked"> 
                                             <span>Collection</span>
                                         </label> --}}
+                                        <div class="wrapper">
+                                            <input type="radio" value="Delivery" name="rec" id="rec_1">
+                                            <input type="radio" value="Collect" name="rec" id="rec_0">
+                                              <label for="rec_1" class="option rec_1">
+                                                <div class="dot"></div>
+                                                 <span>Delivery</span>
+                                                 </label>
+                                              <label for="rec_0" class="option rec_0">
+                                                <div class="dot"></div>
+                                                 <span>Collection</span>
+                                              </label>
+                                        </div>
                                     </div>
 
                                 @endif
@@ -185,10 +262,10 @@
                                         </div>
                                     @endif
     
-                                    <div class="clearfix extradeliverycharge-space d-flex">
+                                    {{-- <div class="clearfix extradeliverycharge-space d-flex">
                                         <div class="left">Extra Charge <span></span>:</div>
                                         <div class="right">£<span>0.00</span></div>
-                                    </div>
+                                    </div> --}}
     
                                     <div class="clearfix discount-space d-flex">
                                         <div class="left">Discount <span></span>:</div>

@@ -6,7 +6,7 @@ class Cart {
 
     public $items = null;
     public $deliveryDetail = null;
-    public $rec = "Delivery";
+    public $rec = "";
     public $pickup_time = null;
     public $pickup_date = null;
     public $orderID = 0;
@@ -21,7 +21,7 @@ class Cart {
             $this->items = $oldCart->items;
             if(empty($oldCart->rec))
             {
-                $this->rec = "Delivery";
+                $this->rec = "";
                 $this->delivery_cost = 1.5;
             }
             else

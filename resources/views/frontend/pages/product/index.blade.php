@@ -385,7 +385,7 @@ $Seo=$objSTD->Seo();
                             }
                             else if(document.getElementById('record_1').checked==true)
                             {
-                                $("#searchPost").modal('show');
+                                // $("#searchPost").modal('show');
                                 $("#orderModal").modal('hide');
                                 selecVal='Delivery';
                             }

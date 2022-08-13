@@ -2,7 +2,7 @@
 <div class="col col-lg-3 col-6 d-none d-lg-block mb-3 ftco-faqs img">
     <div style="position: sticky; top: 10px;">
     <section id="menu-category" class=" p-lg-3 my-3 link-background" data-spy="affix">
-        <h3>ITEMS</h3>
+        {{-- <h3>ITEMS</h3> --}}
         <ul class="nav flex-column" id="ul-scroll-category" style="max-height: 568px;">
         @if(count($category)>0)
         @foreach($category as $cat)
@@ -196,7 +196,7 @@
                                                                     <div class="modal-footer">
                                                                     <span class="priceOfItem_'.$row['id'].'">'.$price.'</span>
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                    <button type="button" class="btn btn-primary add-cart" id="add_cart_btn_'.$row['id'].'" data-id="'.$row['id'].'" data-quantity="">Add To Cart</button>
+                                                                    <button type="button" class="btn btn-primary add-cart" id="add_cart_btn_'.$row['id'].'" data-id="'.$row['id'].'" data-quantity="1">Add To Cart</button>
                                                                     </div>
                                                                 </div>
                                                                 </div>
@@ -670,7 +670,7 @@
                                                             <div class="modal-footer">
                                                                 <span class="priceOfItem_'.$row['id'].'" data-price="'.$price.'">'.$price.'</span>
                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-primary add-cart" id="add_cart_btn_'.$row['id'].'" data-id="'.$row['id'].'" data-quantity="">Add To Cart</button>
+                                                                <button type="button" class="btn btn-primary add-cart" id="add_cart_btn_'.$row['id'].'" data-id="'.$row['id'].'" data-quantity="1">Add To Cart</button>
                                                             </div>
                                                         </div>
                                                         </div>
@@ -764,7 +764,7 @@
                                                             <div class="modal-footer">
                                                             <span class="priceOfItem_'.$row['id'].'" data-price="'.$price.'">'.$price.'</span>
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-primary add-subcat-cart" id="add_cart_btn_'.$row['id'].'" data-extra-id="'.$dt_id.'" data-sub-id="'.$sc['id'].'"  data-sub-name="'.$sc['name'].'"  data-id="'.$row['id'].'" data-quantity="">Add To Cart</button>
+                                                            <button type="button" class="btn btn-primary add-subcat-cart" id="add_cart_btn_'.$row['id'].'" data-extra-id="'.$dt_id.'" data-sub-id="'.$sc['id'].'"  data-sub-name="'.$sc['name'].'"  data-id="'.$row['id'].'" data-quantity="1">Add To Cart</button>
                                                             </div>
                                                         </div>
                                                         </div>
