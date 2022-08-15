@@ -93,7 +93,7 @@ $Seo=$objSTD->Seo();
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <h5> Choose Your Time</h5>
+                    <h5> Choose Your Time Between</h5>
                     {{-- <input type="text" class="form-control" id="pickUpTime"> --}}
 
                     <label>Minimum time for collection is 35-45 mins. 
