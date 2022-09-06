@@ -306,6 +306,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('admin-ecom/discount-update/{id}','DiscountController@update');
         Route::get('admin-ecom/discount/edit/{id}','DiscountController@edit');  
 
+        //Promo Code
+        Route::get('admin-ecom/promo-code','PromoCodeController@index');
+        Route::post('admin-ecom/promo-code-add','PromoCodeController@create');
+        Route::post('admin-ecom/promo-code-update','PromoCodeController@update');
+        Route::get('admin-ecom/promo-code/{id}','PromoCodeController@show');
+
+        Route::get('admin-ecom/promo-code-data','PromoCodeController@showjson');
+        Route::get('admin-ecom/promo-code-delete/{id}','PromoCodeController@destroy');
+
         //Delivery Cost
         Route::get('admin-ecom/delivery-cost','DeliveryCostController@index');
         Route::get('admin-ecom/delivery-cost/json','DeliveryCostController@show');

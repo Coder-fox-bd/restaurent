@@ -114,7 +114,7 @@
                 <ul class="treeview-menu">
                     <li><a href="{{url('admin-ecom/new-discount')}}"><i class="fa fa-plus"></i> Add New Discount</a></li>
                     <li><a href="{{url('admin-ecom/discount')}}"><i class="fa fa-table"></i> Discount List</a></li>
-
+                    <li><a href="{{url('admin-ecom/promo-code')}}"><i class="fa fa-table"></i> Promo Code</a></li>
                 </ul>
             </li>
             <li class="treeview">
