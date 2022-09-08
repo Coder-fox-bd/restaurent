@@ -149,6 +149,14 @@
                     #rec_0:checked:checked ~ .rec_0 span{
                     color: #fff;
                     }
+
+                    .coupon {
+                    border-radius: 1px
+                    }
+
+                    .btn-apply {
+                    font-size: 11px
+                    } 
                 </style>
 
                 <div class="col col-12 col-lg-4 px-3 p-lg-0 mb-3">
@@ -224,7 +232,7 @@
                                         </div>
                                     @endforeach
                                 @endif
-                            
+
                                 <div class="cart-cont" id="style-4">
                                     <span class="append_cart_item">		
                                         <div class="row">
@@ -249,7 +257,16 @@
                                         </div>
                                     </span>
                                 </div>
-
+                                <div class="container-fluid">
+                                    <div class="form-group"> <label>Have coupon?</label>
+                                        <div class="input-group"> 
+                                            <input type="text" class="form-control coupon" name="" placeholder="Coupon code"> 
+                                            <span class="input-group-append"> 
+                                                <button class="btn btn-primary btn-apply coupon">Apply</button> 
+                                            </span> 
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="mini-cart-total">
                                     <div class="clearfix d-flex">
                                         <div class="left">Sub-Total:</div>
@@ -269,7 +286,7 @@
     
                                     <div class="clearfix discount-space d-flex">
                                         <div class="left">Discount <span></span>:</div>
-                                        <div class="right">£<span>0.00</span></div>
+                                        <div class="right discount">£<span>0.00</span></div>
                                     </div>
                                     <div class="clearfix">
                                     </div>
