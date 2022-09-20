@@ -9,9 +9,12 @@ class Cart {
     public $rec = "";
     public $pickup_time = null;
     public $pickup_date = null;
+    public $promo_code = null;
+    public $discount_percentage = null;
     public $orderID = 0;
     public $userID = 0;
     public $totalQty = 0;
+    public $totalDiscountAmount = 0;
     public $totalPrice = 0;
     //public $delivery_cost = 0;
     public $delivery_cost = 0;
@@ -29,6 +32,8 @@ class Cart {
                 $this->rec = $oldCart->rec;
                 $this->pickup_date = $oldCart->pickup_date;
                 $this->pickup_time = $oldCart->pickup_time;
+                $this->promo_code = $oldCart->promo_code;
+                $this->discount_percentage = $oldCart->discount_percentage;
             }
 
             $this->delivery_cost = $oldCart->delivery_cost;
@@ -36,6 +41,7 @@ class Cart {
             $this->orderID = $oldCart->orderID;
             $this->userID = $oldCart->userID;
             $this->totalQty = $oldCart->totalQty;
+            $this->totalDiscountAmount = ($oldCart->discount_percentage / 100) * $oldCart->totalPrice;
             $this->totalPrice = $oldCart->totalPrice;
         }
     }
@@ -45,13 +51,14 @@ class Cart {
         if ($this->items) {
             if (array_key_exists($id, $this->items)) {
                 $storeditem = $this->items[$id];
+                $this->totalPrice -= $storeditem['price'];
             }
         }
         $storeditem['qty'] = $item_qty;
         $storeditem['price'] = $item->price * $storeditem['qty'];
         $this->items[$id] = $storeditem;
-        $this->totalQty = $item_qty;
-        $this->totalPrice += $item->price;
+        $this->totalQty += $item_qty;
+        $this->totalPrice += $storeditem['price'];
     }
 
     public function addSingleSubcat($item, $id, $sub_cat_name, $item_qty) {
@@ -59,20 +66,29 @@ class Cart {
         if ($this->items) {
             if (array_key_exists($id, $this->items)) {
                 $storeditem = $this->items[$id];
+                $this->totalPrice -= $storeditem['price'];
             }
         }
         $storeditem['qty'] = $item_qty;
         $storeditem['price'] = $item->price * $storeditem['qty'];
         $this->items[$id] = $storeditem;
-        $this->totalQty = $item_qty;
-        $this->totalPrice += $item->price;
+        $this->totalQty += $item_qty;
+        $this->totalPrice += $storeditem['price'];
     }
 
-    public function addRec($rec='', $pickup_time='', $pickup_date) {
+    public function addRec($rec='', $pickup_time='', $pickup_date='', $promo_code=null, $discount=null) {
         $this->rec = $rec;
         $this->pickup_time = $pickup_time;
         $this->pickup_date = $pickup_date;
+        $this->promo_code = $promo_code;
+        $this->discount_percentage = $discount;
     } 
+
+    public function addPromoCode($promo_code=null, $discount=null) {
+        $this->promo_code = $promo_code;
+        $this->discount_percentage = $discount;
+        $this->totalDiscountAmount = ($discount / 100) * $this->totalPrice;
+    }
 
     public function mergeDeliveryCost($dd=0) {
         if($this->rec=="Delivery")
@@ -113,20 +129,21 @@ class Cart {
         if ($this->items) {
             if (array_key_exists($id, $this->items)) {
                 $storeditem = $this->items[$id];
+                $storeditem['qty'] += $item_qty;
             }
         }
 
         if ($storeditem['snd_item']) {
             if (array_key_exists($snd_id, $storeditem['snd_item'])) {
                 $storeSNDItem = $storeditem['snd_item'][$snd_id];
+                $storeSNDItem['qty'] += $item_qty;
 
             }
         }
 
-        $storeSNDItem['qty'] = $item_qty;
+
         $storeSNDItem['price'] = $snd_item->price * $storeSNDItem['qty'];
         
-        $storeditem['qty'] = $item_qty;
         if($storeditem['qty']>1)
         {
             $storeditem['price']+=$snd_item->price;
@@ -140,8 +157,8 @@ class Cart {
     }
 
     public function addSndSubCat($item, $id,$snd_item,$snd_id,$sub_cat_name, $item_qty) {
-        $storeditem = ['qty' => $item_qty, 'price' => $snd_item->price,'sub_cat_name'=>$sub_cat_name, 'item' => $item, 'snd_item' =>array()];
-        $storeSNDItem=['qty' => $item_qty, 'price' => $snd_item->price,'sub_cat_name'=>$sub_cat_name, 'item' => $snd_item];
+        $storeditem = ['qty' => 0, 'price' => 0,'sub_cat_name'=>$sub_cat_name, 'item' => $item, 'snd_item' =>array()];
+        $storeSNDItem=['qty' => 0, 'price' => 0,'sub_cat_name'=>$sub_cat_name, 'item' => $snd_item];
 
         if ($this->items) {
             if (array_key_exists($id, $this->items)) {
@@ -152,24 +169,29 @@ class Cart {
         if ($storeditem['snd_item']) {
             if (array_key_exists($snd_id, $storeditem['snd_item'])) {
                 $storeSNDItem = $storeditem['snd_item'][$snd_id];
-
+                $storeditem['price']-=$storeSNDItem['price'];
+                $storeditem['qty'] -= $storeSNDItem['qty'];
+                $this->totalQty -= $storeSNDItem['qty'];
+                $this->totalPrice -= $storeSNDItem['price'];
+                // return $storeSNDItem['price'];
             }
         }
 
         $storeSNDItem['qty'] = $item_qty;
+
         $storeSNDItem['price'] = $snd_item->price * $storeSNDItem['qty'];
         
-        $storeditem['qty'] = $item_qty;
-        if($storeditem['qty']>1)
-        {
-            $storeditem['price']+=$snd_item->price;
-        }
+        $storeditem['qty'] += $item_qty;
+        // if($storeditem['qty']>1)
+        // {
+            $storeditem['price']+=$storeSNDItem['price'];
+        // }
 
         $storeditem['snd_item'][$snd_id]=$storeSNDItem;
 
         $this->items[$id] = $storeditem;
-        $this->totalQty = $item_qty;
-        $this->totalPrice += $snd_item->price;
+        $this->totalQty += $item_qty;
+        $this->totalPrice += $storeSNDItem['price'];
     }
 
     public function addexecMenu($item, $id,$execArrayData) {

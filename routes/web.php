@@ -124,6 +124,8 @@ Route::get('/order-item/json','ProductItemController@product');
 Route::get('/Order-Item','ProductItemController@index');
 Route::post('/order-item/add-to-cart','ProductItemController@addtocart');
 
+Route::post('/order-item/add-coupon','ProductItemController@addCoupon');
+
 Route::post('/order-item/delete-to-cart','ProductItemController@deltocart');
 Route::get('/order-item/add-to-cart/json','ProductItemController@cartJson');
 Route::post('/order-item/zip-code-cart','ProductItemController@cartzipcode');

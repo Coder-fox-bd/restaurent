@@ -54,9 +54,11 @@
             else{ var totalPrice=0; }
 
             //totalPrice=totalPrice-specialItemPrice;
+            // totalPrice=totalPrice-obj.totalDiscountAmount;
 
             //console.log('sssss-',totalPrice);
             console.log('Total Price =',totalPrice);
+            console.log('Total discount =',obj.totalDiscountAmount);
             console.log('Total Price without Special Price =',(totalPrice-specialItemPrice));
             $("#mini_cart_subtotal").html(parseFloat(totalPrice).toFixed(2));
 
@@ -109,9 +111,11 @@
 
 
 
-
-        var discount=0;
-
+        if(obj.totalDiscountAmount) {
+            var discount=obj.totalDiscountAmount;
+        } else {
+            var discount=0;
+        }
 
 
         //spend-discount
@@ -173,7 +177,7 @@
         	}
 
         }
-        else{ $(".discount-space").children("div:eq(1)").children("span:eq(0)").html('0.00'); }
+        else{ $(".discount-space").children("div:eq(1)").children("span:eq(0)").html(parseFloat(discount).toFixed(2)); }
 
         console.log('Current Discount',discount);
 
@@ -1118,7 +1122,43 @@
 
                 });
 
+                $("#coupon_submit").click(function(){
+                    promo_code = document.getElementById("promo_code").value;
+                    
+                    var addCoupon="{{url('/order-item/add-coupon')}}";
 
+                    //------------------------Ajax POS Start-------------------------//
+
+                    $.ajax({
+
+                        'async': true,
+
+                        'type': "POST",
+
+                        'global': false,
+
+                        'dataType': 'json',
+
+                        'url': addCoupon,
+
+                        'data': {'promo_code':promo_code,'_token':"{{csrf_token()}}"},
+
+                        'success': function (data) {
+                            if(data['discount_percentage']){
+                                swal('congratulations',`You have got ${data['discount_percentage']} percent discount!`,'success');
+
+                                loadCart(data);
+                            }else{
+                                swal('Sorry',`This code is not valid!`,'error');
+
+                                loadCart(data);
+                            }
+
+                        }
+
+                    });
+                    
+                });
 
                 $(".empty-cart").click(function(){
 
@@ -1169,7 +1209,7 @@
                     var item_id=$(this).attr('data-id');
 
                     var item_qty=$(this).attr('data-quantity');
-
+                    // alert(item_qty);
                     var addtoCartURL="{{url('order-item/add-to-cart')}}";
 
                     $(`#itemModalCenter${item_id}`).modal('hide');
@@ -1190,6 +1230,7 @@
                         'data': {'item_id':item_id,'item_sub_cat_name':item_sub_cat_name,'item_qty':item_qty, '_token':"{{csrf_token()}}"},
 
                         'success': function (data) {
+                            // console.log(data);
                             toastr.success('Item added to cart');
                             //tmp = data;
 

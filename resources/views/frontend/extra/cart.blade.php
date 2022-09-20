@@ -260,9 +260,9 @@
                                 <div class="container-fluid">
                                     <div class="form-group"> <label>Have coupon?</label>
                                         <div class="input-group"> 
-                                            <input type="text" class="form-control coupon" name="" placeholder="Coupon code"> 
+                                            <input type="text" class="form-control coupon" id="promo_code" placeholder="Coupon code"> 
                                             <span class="input-group-append"> 
-                                                <button class="btn btn-primary btn-apply coupon">Apply</button> 
+                                                <button class="btn btn-primary btn-apply coupon" id="coupon_submit">Apply</button> 
                                             </span> 
                                         </div>
                                     </div>

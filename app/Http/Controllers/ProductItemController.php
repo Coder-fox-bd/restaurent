@@ -23,6 +23,7 @@ use App\Orders;
 use App\OrdersItem;
 use App\OrderTransaction;
 use App\DeliveryCost;
+use App\PromoCode;
 use Illuminate\Http\Request;
 
 //paypal lib
@@ -173,6 +174,7 @@ class ProductItemController extends Controller
 
          
         $totalPrice=$defultReturn['cart']->totalPrice;
+        
 
         if($totalPrice<1)
         {
@@ -288,6 +290,13 @@ class ProductItemController extends Controller
                 
         }
 
+        if($defultReturn['cart']->totalDiscountAmount)
+        {
+            $discount_title="Discount (".$defultReturn['cart']->discount_percentage.'%'.")";
+            $discount_amount=$defultReturn['cart']->totalDiscountAmount;
+                
+        }
+
        //dd($discount_amount);
 
         //echo 1; die();
@@ -344,6 +353,7 @@ class ProductItemController extends Controller
         $pro->delivery_note = $defultReturn['cart']->deliveryDetail["delivery_note"];
         $pro->cart_json = serialize($defultReturn['cart']);
         $pro->save();
+        // dd($pro);
 
         $order_id = $pro->id;
 
@@ -1242,7 +1252,6 @@ class ProductItemController extends Controller
              <input type="hidden" name="test_success_url" value="'.url('complete-payment-online').'" />
              <input type="hidden" name="test_transaction" value="100" />*/
              $ncxSetting = NochexSetting::orderBy('id','DESC')->first();
-             
              return '<form method="post" action="https://secure.nochex.com" id="nochex_payment_form">
              <input type="hidden" name="merchant_id" value="'.$ncxSetting->nochex_merchant_id.'" />
              <input type="hidden" name="amount" value="'.$totalInvoiceAmount.'" />
@@ -4045,6 +4054,23 @@ class ProductItemController extends Controller
         return view('frontend.pages.checkout.select-payment',$defultReturn);
     }
 
+    public function addCoupon(Request $request) {
+        $promo_code = PromoCode::where('code', $request->promo_code)->where('isactive', 1)->first();
+        if($promo_code){
+            $oldCart = Session::has('cart') ? Session::get('cart') : null;
+            $cart = new Cart($oldCart);
+            $cart->addPromoCode($request->promo_code, $promo_code->percentage);
+            // print_r($cart);
+            $request->session()->put('cart', $cart);
+        }else{
+            $oldCart = Session::has('cart') ? Session::get('cart') : null;
+            $cart = new Cart($oldCart);
+            $cart->addPromoCode($request->promo_code, 0);
+            $request->session()->put('cart', $cart);
+        }
+        $new_cart =  Session::has('cart') ? Session::get('cart') : null;
+        return response()->json($new_cart);
+    }
     /**
      * Show the form for creating a new resource.
      *
